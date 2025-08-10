@@ -1,0 +1,29 @@
+{
+  "dram_cache_size": 1000,
+  "flash_cache_size": 100001,
+  "results": [
+    {
+      "hit": 11053864,
+      "iteration": 0,
+      "metrics": [
+        {
+          "admission_treshold": 1,
+          "algorithm": "qtime-clock",
+          "byte_inserted": 87946136,
+          "byte_miss": 88946136,
+          "byte_read": 11053864,
+          "byte_reinserted": 5424415,
+          "hit": 11053864,
+          "inserted": 87946136,
+          "layer": 0,
+          "miss_ratio": 0.88946136,
+          "reinserted": 5424415,
+          "req": 100000000
+        }
+      ],
+      "miss_ratio": 0.88946136,
+      "req": 100000000
+    }
+  ],
+  "trace": "zipf0.25.oracleGeneral"
+}

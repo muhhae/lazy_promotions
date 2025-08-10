@@ -1,0 +1,51 @@
+{
+  "dram_cache_size": 429340128,
+  "flash_cache_size": 42934013952,
+  "results": [
+    {
+      "hit": 164669828,
+      "iteration": 0,
+      "metrics": [
+        {
+          "admission_treshold": 1,
+          "algorithm": "offline-qtime-clock",
+          "byte_inserted": 566779465566,
+          "byte_miss": 996690716888,
+          "byte_read": 5933413962721,
+          "byte_reinserted": 676443753050,
+          "hit": 164669828,
+          "inserted": 24581693,
+          "layer": 0,
+          "miss_ratio": 0.2069684635681066,
+          "reinserted": 25395906,
+          "req": 207646002
+        }
+      ],
+      "miss_ratio": 0.2069684635681066,
+      "req": 207646002
+    },
+    {
+      "hit": 164038286,
+      "iteration": 1,
+      "metrics": [
+        {
+          "admission_treshold": 1,
+          "algorithm": "offline-qtime-clock",
+          "byte_inserted": 1149500080369,
+          "byte_miss": 2009322583013,
+          "byte_read": 11850886776205,
+          "byte_reinserted": 1207768971968,
+          "hit": 164038286,
+          "inserted": 25213235,
+          "layer": 0,
+          "miss_ratio": 0.21000989944415116,
+          "reinserted": 19534791,
+          "req": 207646002
+        }
+      ],
+      "miss_ratio": 0.21000989944415116,
+      "req": 207646002
+    }
+  ],
+  "trace": "wiki_2019t.oracleGeneral.zst"
+}
