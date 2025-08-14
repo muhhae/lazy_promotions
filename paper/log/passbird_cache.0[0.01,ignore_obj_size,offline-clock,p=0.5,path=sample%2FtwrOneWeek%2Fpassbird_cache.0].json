@@ -1,0 +1,51 @@
+{
+  "dram_cache_size": 617,
+  "flash_cache_size": 61779,
+  "results": [
+    {
+      "hit": 531297929,
+      "iteration": 0,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "offline-clock",
+          "byte_inserted": 16808391,
+          "byte_miss": 16808391,
+          "byte_read": 531297929,
+          "byte_reinserted": 15852333,
+          "hit": 531297929,
+          "inserted": 16808391,
+          "layer": 0,
+          "miss_ratio": 0.030666296641133406,
+          "reinserted": 15852333,
+          "req": 548106320
+        }
+      ],
+      "miss_ratio": 0.030666296641133406,
+      "req": 548106320
+    },
+    {
+      "hit": 531510748,
+      "iteration": 1,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "offline-clock",
+          "byte_inserted": 33403963,
+          "byte_miss": 33403963,
+          "byte_read": 1062808677,
+          "byte_reinserted": 18991700,
+          "hit": 531510748,
+          "inserted": 16595572,
+          "layer": 0,
+          "miss_ratio": 0.030278016133804098,
+          "reinserted": 3139367,
+          "req": 548106320
+        }
+      ],
+      "miss_ratio": 0.030278016133804098,
+      "req": 548106320
+    }
+  ],
+  "trace": "passbird_cache.0.oracleGeneral.sample10.zst"
+}

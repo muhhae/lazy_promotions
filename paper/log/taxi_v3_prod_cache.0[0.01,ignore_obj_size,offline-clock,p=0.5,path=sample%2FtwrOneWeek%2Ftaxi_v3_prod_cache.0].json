@@ -1,0 +1,51 @@
+{
+  "dram_cache_size": 11042,
+  "flash_cache_size": 1104255,
+  "results": [
+    {
+      "hit": 486808407,
+      "iteration": 0,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "offline-clock",
+          "byte_inserted": 137187279,
+          "byte_miss": 137187279,
+          "byte_read": 486808407,
+          "byte_reinserted": 145344400,
+          "hit": 486808407,
+          "inserted": 137187279,
+          "layer": 0,
+          "miss_ratio": 0.21985292859861216,
+          "reinserted": 145344400,
+          "req": 623995686
+        }
+      ],
+      "miss_ratio": 0.21985292859861216,
+      "req": 623995686
+    },
+    {
+      "hit": 486902096,
+      "iteration": 1,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "offline-clock",
+          "byte_inserted": 274280869,
+          "byte_miss": 274280869,
+          "byte_read": 973710503,
+          "byte_reinserted": 148842221,
+          "hit": 486902096,
+          "inserted": 137093590,
+          "layer": 0,
+          "miss_ratio": 0.2197027849323946,
+          "reinserted": 3497821,
+          "req": 623995686
+        }
+      ],
+      "miss_ratio": 0.2197027849323946,
+      "req": 623995686
+    }
+  ],
+  "trace": "taxi_v3_prod_cache.0.oracleGeneral.sample10.zst"
+}

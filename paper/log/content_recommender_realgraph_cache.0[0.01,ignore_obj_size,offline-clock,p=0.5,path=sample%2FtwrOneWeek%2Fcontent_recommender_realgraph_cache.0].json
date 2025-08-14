@@ -1,0 +1,51 @@
+{
+  "dram_cache_size": 27,
+  "flash_cache_size": 2702,
+  "results": [
+    {
+      "hit": 12246211,
+      "iteration": 0,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "offline-clock",
+          "byte_inserted": 12884706,
+          "byte_miss": 12884706,
+          "byte_read": 12246211,
+          "byte_reinserted": 5787775,
+          "hit": 12246211,
+          "inserted": 12884706,
+          "layer": 0,
+          "miss_ratio": 0.5127033764824419,
+          "reinserted": 5787775,
+          "req": 25130917
+        }
+      ],
+      "miss_ratio": 0.5127033764824419,
+      "req": 25130917
+    },
+    {
+      "hit": 12248058,
+      "iteration": 1,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "offline-clock",
+          "byte_inserted": 25767565,
+          "byte_miss": 25767565,
+          "byte_read": 24494269,
+          "byte_reinserted": 5790537,
+          "hit": 12248058,
+          "inserted": 12882859,
+          "layer": 0,
+          "miss_ratio": 0.5126298813529169,
+          "reinserted": 2762,
+          "req": 25130917
+        }
+      ],
+      "miss_ratio": 0.5126298813529169,
+      "req": 25130917
+    }
+  ],
+  "trace": "content_recommender_realgraph_cache.0.oracleGeneral.sample10.zst"
+}

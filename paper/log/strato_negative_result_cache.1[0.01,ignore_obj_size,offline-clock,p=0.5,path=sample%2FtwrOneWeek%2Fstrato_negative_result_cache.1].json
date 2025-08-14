@@ -1,0 +1,51 @@
+{
+  "dram_cache_size": 539,
+  "flash_cache_size": 53995,
+  "results": [
+    {
+      "hit": 428868803,
+      "iteration": 0,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "offline-clock",
+          "byte_inserted": 54085280,
+          "byte_miss": 54085280,
+          "byte_read": 428868803,
+          "byte_reinserted": 45261507,
+          "hit": 428868803,
+          "inserted": 54085280,
+          "layer": 0,
+          "miss_ratio": 0.11198845170545957,
+          "reinserted": 45261507,
+          "req": 482954083
+        }
+      ],
+      "miss_ratio": 0.11198845170545957,
+      "req": 482954083
+    },
+    {
+      "hit": 430854278,
+      "iteration": 1,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "offline-clock",
+          "byte_inserted": 106185085,
+          "byte_miss": 106185085,
+          "byte_read": 859723081,
+          "byte_reinserted": 65009551,
+          "hit": 430854278,
+          "inserted": 52099805,
+          "layer": 0,
+          "miss_ratio": 0.10787734659238812,
+          "reinserted": 19748044,
+          "req": 482954083
+        }
+      ],
+      "miss_ratio": 0.10787734659238812,
+      "req": 482954083
+    }
+  ],
+  "trace": "strato_negative_result_cache.1.oracleGeneral.sample10.zst"
+}

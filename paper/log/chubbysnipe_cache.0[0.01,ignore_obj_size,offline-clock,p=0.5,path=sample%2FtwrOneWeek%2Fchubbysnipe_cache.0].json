@@ -1,0 +1,51 @@
+{
+  "dram_cache_size": 423,
+  "flash_cache_size": 42358,
+  "results": [
+    {
+      "hit": 875073452,
+      "iteration": 0,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "offline-clock",
+          "byte_inserted": 166366442,
+          "byte_miss": 166366442,
+          "byte_read": 875073452,
+          "byte_reinserted": 220930684,
+          "hit": 875073452,
+          "inserted": 166366442,
+          "layer": 0,
+          "miss_ratio": 0.1597465614275767,
+          "reinserted": 220930684,
+          "req": 1041439894
+        }
+      ],
+      "miss_ratio": 0.1597465614275767,
+      "req": 1041439894
+    },
+    {
+      "hit": 889757275,
+      "iteration": 1,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "offline-clock",
+          "byte_inserted": 318049061,
+          "byte_miss": 318049061,
+          "byte_read": 1764830727,
+          "byte_reinserted": 310511783,
+          "hit": 889757275,
+          "inserted": 151682619,
+          "layer": 0,
+          "miss_ratio": 0.14564702185299616,
+          "reinserted": 89581099,
+          "req": 1041439894
+        }
+      ],
+      "miss_ratio": 0.14564702185299616,
+      "req": 1041439894
+    }
+  ],
+  "trace": "chubbysnipe_cache.0.oracleGeneral.sample10.zst"
+}

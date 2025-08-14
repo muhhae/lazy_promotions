@@ -1,0 +1,51 @@
+{
+  "dram_cache_size": 129,
+  "flash_cache_size": 12925,
+  "results": [
+    {
+      "hit": 376785720,
+      "iteration": 0,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "offline-clock",
+          "byte_inserted": 13172507,
+          "byte_miss": 13172507,
+          "byte_read": 376785720,
+          "byte_reinserted": 25072644,
+          "hit": 376785720,
+          "inserted": 13172507,
+          "layer": 0,
+          "miss_ratio": 0.033779277081388503,
+          "reinserted": 25072644,
+          "req": 389958227
+        }
+      ],
+      "miss_ratio": 0.033779277081388503,
+      "req": 389958227
+    },
+    {
+      "hit": 377435345,
+      "iteration": 1,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "offline-clock",
+          "byte_inserted": 25695389,
+          "byte_miss": 25695389,
+          "byte_read": 754221065,
+          "byte_reinserted": 31176495,
+          "hit": 377435345,
+          "inserted": 12522882,
+          "layer": 0,
+          "miss_ratio": 0.032113393519968,
+          "reinserted": 6103851,
+          "req": 389958227
+        }
+      ],
+      "miss_ratio": 0.032113393519968,
+      "req": 389958227
+    }
+  ],
+  "trace": "simclusters_strato_read_through_cache.0.oracleGeneral.sample10.zst"
+}

@@ -1,0 +1,51 @@
+{
+  "dram_cache_size": 94,
+  "flash_cache_size": 9462,
+  "results": [
+    {
+      "hit": 122078619,
+      "iteration": 0,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "offline-clock",
+          "byte_inserted": 2228447,
+          "byte_miss": 2228447,
+          "byte_read": 122078619,
+          "byte_reinserted": 2736688,
+          "hit": 122078619,
+          "inserted": 2228447,
+          "layer": 0,
+          "miss_ratio": 0.01792695356513363,
+          "reinserted": 2736688,
+          "req": 124307066
+        }
+      ],
+      "miss_ratio": 0.01792695356513363,
+      "req": 124307066
+    },
+    {
+      "hit": 122213058,
+      "iteration": 1,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "offline-clock",
+          "byte_inserted": 4322455,
+          "byte_miss": 4322455,
+          "byte_read": 244291677,
+          "byte_reinserted": 3558167,
+          "hit": 122213058,
+          "inserted": 2094008,
+          "layer": 0,
+          "miss_ratio": 0.016845446259667995,
+          "reinserted": 821479,
+          "req": 124307066
+        }
+      ],
+      "miss_ratio": 0.016845446259667995,
+      "req": 124307066
+    }
+  ],
+  "trace": "top_tweets_for_trends_cache.0.oracleGeneral.sample10.zst"
+}

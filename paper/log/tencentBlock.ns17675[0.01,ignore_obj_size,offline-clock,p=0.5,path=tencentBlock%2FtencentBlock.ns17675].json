@@ -1,0 +1,51 @@
+{
+  "dram_cache_size": 13,
+  "flash_cache_size": 1359,
+  "results": [
+    {
+      "hit": 459866,
+      "iteration": 0,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "offline-clock",
+          "byte_inserted": 572057,
+          "byte_miss": 572057,
+          "byte_read": 459866,
+          "byte_reinserted": 102404,
+          "hit": 459866,
+          "inserted": 572057,
+          "layer": 0,
+          "miss_ratio": 0.5543601605933777,
+          "reinserted": 102404,
+          "req": 1031923
+        }
+      ],
+      "miss_ratio": 0.5543601605933777,
+      "req": 1031923
+    },
+    {
+      "hit": 459990,
+      "iteration": 1,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "offline-clock",
+          "byte_inserted": 1143990,
+          "byte_miss": 1143990,
+          "byte_read": 919856,
+          "byte_reinserted": 116572,
+          "hit": 459990,
+          "inserted": 571933,
+          "layer": 0,
+          "miss_ratio": 0.5542399965888928,
+          "reinserted": 14168,
+          "req": 1031923
+        }
+      ],
+      "miss_ratio": 0.5542399965888928,
+      "req": 1031923
+    }
+  ],
+  "trace": "tencentBlock.ns17675.oracleGeneral.zst"
+}

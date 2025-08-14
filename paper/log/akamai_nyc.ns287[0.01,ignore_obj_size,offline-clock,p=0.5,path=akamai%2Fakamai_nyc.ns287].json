@@ -1,0 +1,51 @@
+{
+  "dram_cache_size": 0,
+  "flash_cache_size": 9,
+  "results": [
+    {
+      "hit": 217806,
+      "iteration": 0,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "offline-clock",
+          "byte_inserted": 2384357,
+          "byte_miss": 2384357,
+          "byte_read": 217806,
+          "byte_reinserted": 207033,
+          "hit": 217806,
+          "inserted": 2384357,
+          "layer": 0,
+          "miss_ratio": 0.9162980950847429,
+          "reinserted": 207033,
+          "req": 2602163
+        }
+      ],
+      "miss_ratio": 0.9162980950847429,
+      "req": 2602163
+    },
+    {
+      "hit": 223248,
+      "iteration": 1,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "offline-clock",
+          "byte_inserted": 4763272,
+          "byte_miss": 4763272,
+          "byte_read": 441054,
+          "byte_reinserted": 214053,
+          "hit": 223248,
+          "inserted": 2378915,
+          "layer": 0,
+          "miss_ratio": 0.914206757993254,
+          "reinserted": 7020,
+          "req": 2602163
+        }
+      ],
+      "miss_ratio": 0.914206757993254,
+      "req": 2602163
+    }
+  ],
+  "trace": "akamai_nyc.ns287.oracleGeneral.bin.zst"
+}

@@ -1,0 +1,51 @@
+{
+  "dram_cache_size": 129,
+  "flash_cache_size": 12977,
+  "results": [
+    {
+      "hit": 798271431,
+      "iteration": 0,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "offline-clock",
+          "byte_inserted": 126223966,
+          "byte_miss": 126223966,
+          "byte_read": 798271431,
+          "byte_reinserted": 122492158,
+          "hit": 798271431,
+          "inserted": 126223966,
+          "layer": 0,
+          "miss_ratio": 0.13653282256417765,
+          "reinserted": 122492158,
+          "req": 924495397
+        }
+      ],
+      "miss_ratio": 0.13653282256417765,
+      "req": 924495397
+    },
+    {
+      "hit": 802604838,
+      "iteration": 1,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "offline-clock",
+          "byte_inserted": 248114525,
+          "byte_miss": 248114525,
+          "byte_read": 1600876269,
+          "byte_reinserted": 162724049,
+          "hit": 802604838,
+          "inserted": 121890559,
+          "layer": 0,
+          "miss_ratio": 0.13184550122751992,
+          "reinserted": 40231891,
+          "req": 924495397
+        }
+      ],
+      "miss_ratio": 0.13184550122751992,
+      "req": 924495397
+    }
+  ],
+  "trace": "geouser_cache.1.oracleGeneral.sample10.zst"
+}

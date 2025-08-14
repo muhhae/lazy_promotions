@@ -1,0 +1,51 @@
+{
+  "dram_cache_size": 12,
+  "flash_cache_size": 1229,
+  "results": [
+    {
+      "hit": 18925282,
+      "iteration": 0,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "offline-clock",
+          "byte_inserted": 2859440,
+          "byte_miss": 2859440,
+          "byte_read": 18925282,
+          "byte_reinserted": 3814852,
+          "hit": 18925282,
+          "inserted": 2859440,
+          "layer": 0,
+          "miss_ratio": 0.1312589621295145,
+          "reinserted": 3814852,
+          "req": 21784722
+        }
+      ],
+      "miss_ratio": 0.1312589621295145,
+      "req": 21784722
+    },
+    {
+      "hit": 19060074,
+      "iteration": 1,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "offline-clock",
+          "byte_inserted": 5584088,
+          "byte_miss": 5584088,
+          "byte_read": 37985356,
+          "byte_reinserted": 4608751,
+          "hit": 19060074,
+          "inserted": 2724648,
+          "layer": 0,
+          "miss_ratio": 0.12507150653563537,
+          "reinserted": 793899,
+          "req": 21784722
+        }
+      ],
+      "miss_ratio": 0.12507150653563537,
+      "req": 21784722
+    }
+  ],
+  "trace": "tflock_user_tweet_cache.0.oracleGeneral.sample10.zst"
+}

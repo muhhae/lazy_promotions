@@ -1,0 +1,51 @@
+{
+  "dram_cache_size": 5090,
+  "flash_cache_size": 509092,
+  "results": [
+    {
+      "hit": 151749440,
+      "iteration": 0,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "offline-clock",
+          "byte_inserted": 121317252,
+          "byte_miss": 121317252,
+          "byte_read": 151749440,
+          "byte_reinserted": 52123270,
+          "hit": 151749440,
+          "inserted": 121317252,
+          "layer": 0,
+          "miss_ratio": 0.4442770046813326,
+          "reinserted": 52123270,
+          "req": 273066692
+        }
+      ],
+      "miss_ratio": 0.4442770046813326,
+      "req": 273066692
+    },
+    {
+      "hit": 153357907,
+      "iteration": 1,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "offline-clock",
+          "byte_inserted": 241026037,
+          "byte_miss": 241026037,
+          "byte_read": 305107347,
+          "byte_reinserted": 72189474,
+          "hit": 153357907,
+          "inserted": 119708785,
+          "layer": 0,
+          "miss_ratio": 0.43838662314772536,
+          "reinserted": 20066204,
+          "req": 273066692
+        }
+      ],
+      "miss_ratio": 0.43838662314772536,
+      "req": 273066692
+    }
+  ],
+  "trace": "tencent_photo2.oracleGeneral.sample10.zst"
+}
