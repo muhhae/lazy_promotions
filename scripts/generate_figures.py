@@ -5,7 +5,7 @@ from typing import Final
 import pandas as pd
 
 from common import extract_desc, sort_key
-from lazy_promotions_parser import GetResult
+from outputs_parser import GetResult
 from docs_writer import DocsWriter
 from plotly_wrapper import Line, Scatter
 
