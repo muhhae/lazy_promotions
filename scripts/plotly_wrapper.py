@@ -58,16 +58,14 @@ def Scatter(df: pd.DataFrame, include_zero: bool = False, **kwargs) -> go.Figure
     return fig
 
 
-def Box(df: pd.DataFrame, **kwargs) -> go.Figure:
-    fig = px.box(df, **kwargs)
-    fig.update_xaxes(dtick=10)
+def Box(df: pd.DataFrame, x: str, y: str, **kwargs) -> go.Figure:
+    fig = px.box(df, x=x, y=y, **kwargs)
     fig.update_layout(
-        font=dict(size=32),
-        height=30 * len(df[kwargs.get("y")].unique()),
-        width=750,
+        font=dict(size=24),
+        height=800,
+        width=800,
         showlegend=False,
     )
-    fig.update_xaxes(showgrid=True, nticks=10)
     fig.update_yaxes(showgrid=True, nticks=20)
     return fig
 

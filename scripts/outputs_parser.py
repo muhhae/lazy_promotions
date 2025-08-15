@@ -3,45 +3,29 @@ import os
 from pathlib import Path
 from typing import Any, List, cast
 
-from numpy import nan
+from numpy import nan, trace
 import pandas as pd
 from common import extract_desc
 
 
 def ProcessResultJSON(result: dict, file, algorithm):
     prefix, desc = extract_desc(file)
-    add_desc: dict[str, Any] = desc[-1] if isinstance(desc[-1], dict) else dict()
+    desc_map: dict[str, Any] = desc[-1] if isinstance(desc[-1], dict) else dict()
     metrics = result["metrics"][0]
-    result = {
+    return {
         "Algorithm": algorithm,
         "Inserted": metrics.get("inserted", 0),
         "Reinserted": metrics.get("reinserted", 0),
         "Miss Ratio": metrics.get("miss_ratio", 0),
         "Hit": metrics.get("hit", 0),
         "Request": metrics.get("req", 0),
-        "Hit / Reinserted": (
-            float("inf")
-            if metrics.get("reinserted", 0) == 0
-            else metrics.get("hit", 0) / metrics.get("reinserted", 0)
-        ),
-        "P": float(cast(str, add_desc.get("p", nan))),
+        "P": float(cast(str, desc_map.get("p", nan))),
         "Trace": os.path.basename(prefix),
-        "Trace Group": "CloudPhysics"
-        if "cloudphysics" in file
-        else "MetaCDN"
-        if "meta" in file
-        else "Zipf"
-        if "zipf" in file
-        else "Wiki"
-        if "wiki" in file
-        else "Tencent Photos"
-        if "tencent" in file
-        else "Unknown",
+        "Trace Path": desc_map.get("path", "").replace("%2F", "/"),
         "Cache Size": float(cast(str, desc[0])),
         "Ignore Obj Size": desc.count("ignore_obj_size"),
         "JSON File": os.path.basename(file),
     }
-    return result
 
 
 def GetResult(paths: List[str], plot_name: str, index=0):

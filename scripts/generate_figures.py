@@ -1,105 +1,164 @@
 import os
 from glob import glob
+from pathlib import Path
 from typing import Final
 
 import pandas as pd
+from pandasgui import show
 
 from common import extract_desc, sort_key
 from outputs_parser import GetResult
 from docs_writer import DocsWriter
-from plotly_wrapper import Line, Scatter
+from plotly_wrapper import Box, Scatter
 
-OUTPUT_PATH: Final[str] = "../lazy_promotions_site/figures/"
-DATA_PATH: Final[str] = "../lazy_promotions/"
+OUTPUT_PATH: Final[str] = "../figures/"
+DATA_PATH: Final[str] = "../paper/log/"
 ALGO_ORDERS = [
     "FIFO",
     "LRU",
     "CLOCK",
     "Offline CLOCK",
     "Q-Clock",
-    "Offline Q-CLOCK",
     "QTime-Clock",
-    "Offline QTime-Clock",
 ]
 
 
 def WriteAggregate(
     writer: DocsWriter,
     df: pd.DataFrame,
-    modifier: str,
+    desc: str = "",
 ):
-    writer.Write("## Aggregate Results")
+    writer.Write(f"## Aggregate Results for {desc}")
+    for key in [
+        "[PAPER] Relative Miss Ratio",
+        "[PAPER] Relative Promotion",
+        "[PAPER] Promotion Efficiency",
+    ]:
+        title = f"{key} for {desc}"
+        writer.Write(f"### {title}")
+        fig = Box(
+            df,
+            y=key,
+            x="Algorithm",
+            title=title,
+            category_orders={"Algorithm": ALGO_ORDERS},
+        )
+        writer.WriteFig(fig)
+
+    for key in ["Hit", "Miss Ratio", "Reinserted"]:
+        title = f"Relative Delta {key} for {desc}"
+        writer.Write(f"### {title}")
+        fig = Box(
+            df.query("Algorithm != 'LRU'") if key == "Reinserted" else df,
+            y=f"Rel. D. {key}",
+            x="Algorithm",
+            title=title,
+            category_orders={"Algorithm": ALGO_ORDERS},
+        )
+        writer.WriteFig(fig)
+    for key in ["Hit", "Miss Ratio", "Reinserted"]:
+        title = f"Absolute Delta {key}"
+        writer.Write(f"### {title}")
+        fig = Box(
+            df.query("Algorithm != 'LRU'") if key == "Reinserted" else df,
+            y=f"Abs. D. {key}",
+            x="Algorithm",
+            title=title,
+            category_orders={"Algorithm": ALGO_ORDERS},
+        )
+        writer.WriteFig(fig)
 
 
 def WriteIndividual(
     writer: DocsWriter,
     df: pd.DataFrame,
-    modifier: str,
+    title: str = "",
 ):
     writer.Write("## Individual Results")
     for ign_obj_size in df["Ignore Obj Size"].unique():
         writer.Write(f"### Ignore Object Size = {'True' if ign_obj_size else 'False'}")
-        for trace in df["Trace"].unique():
-            writer.Write(f"#### {trace}")
-            for Y in ["Miss Ratio", "Hit", "Reinserted"]:
-                writer.Write(f"##### {Y}")
-                for cache_size in df["Cache Size"].unique():
-                    data = df.query(
-                        "`Trace` == @trace and `Ignore Obj Size` == @ign_obj_size and `Cache Size` == @cache_size"
-                    ).sort_values(by="P")
-                    fig = Line(
-                        data,
-                        "P",
-                        Y,
-                        color="Algorithm",
-                        title=f"{trace} # {cache_size * 100}%",
-                        category_orders={"Algorithm": ALGO_ORDERS},
-                        markers=True,
-                    )
-                    fig.update_layout(xaxis_dtick=0.125)
-                    fig.update_traces(connectgaps=True)
-                    writer.WriteFig(fig)
-            writer.Write("##### Scatter")
-            for cache_size in df["Cache Size"].unique():
-                writer.Write(f"###### Cache Size = {cache_size}")
-                for p in sorted(df["P"].unique()):
-                    data = df.query(
-                        "`Trace` == @trace and `Ignore Obj Size` == @ign_obj_size and `Cache Size` == @cache_size and `P` == @p"
-                    ).sort_values(by="P")
+        obj_size_filtered = df.query("`Ignore Obj Size` == @ign_obj_size")
+        for trace_group in sorted(obj_size_filtered["Trace Group"].unique()):
+            writer.Write(f"#### {trace_group}")
+            group_filtered = obj_size_filtered.query("`Trace Group` == @trace_group")
+            for trace in sorted(group_filtered["Trace Path"].unique()):
+                writer.Write(f"##### {trace}")
+                trace_filtered = group_filtered.query("`Trace Path` == @trace")
+                for cache_size in trace_filtered["Cache Size"].unique():
+                    writer.Write(f"###### Cache Size = {cache_size}")
+                    size_filtered = trace_filtered.query("`Cache Size` == @cache_size")
                     fig = Scatter(
-                        data,
+                        size_filtered,
                         x="Reinserted",
                         y="Miss Ratio",
                         color="Algorithm",
-                        title=f"{trace} # {cache_size * 100}% # P={p}",
+                        title=f"{trace} {cache_size * 100}% {title}",
                         category_orders={"Algorithm": ALGO_ORDERS},
                         symbol="Algorithm",
                     )
                     writer.WriteFig(fig)
+            print(f"{trace_group} generated!")
+        print(f"{ign_obj_size} generated!")
 
 
 def GenerateSite(
     title: str,
     df: pd.DataFrame,
-    modifier: str,
 ):
-    current_title = f"{title}"
+    if df.empty:
+        return
+
     html_path = os.path.join(
         OUTPUT_PATH,
-        f"{current_title}.html",
+        f"{title}.html",
     )
     writer = DocsWriter(html_path=html_path, md_path=None)
+    for p in sorted(df["P"].unique()):
+        data = df.query("`P` == @p or `Algorithm` not in ['QTime-Clock', 'Q-Clock']")
+        if data.empty:
+            continue
 
-    writer.Write(f"# {title}")
-    WriteAggregate(writer, df, modifier)
-    WriteIndividual(writer, df, modifier)
+        current_title = f"P = {p}"
+        writer.Write(f"# {current_title}")
+        WriteAggregate(writer, df, current_title)
+        WriteIndividual(writer, df)
+
     writer.Flush()
-    print("Finished generating " + current_title)
+    print("Finished generating " + title)
+
+
+def AdditionalProcessing(df: pd.DataFrame, compared_algo="CLOCK"):
+    df["Trace Group"] = df["Trace Path"].apply(lambda x: Path(x).parts[0])
+    df["Miss"] = df["Request"] - df["Hit"]
+    for key in ["Hit", "Miss Ratio", "Reinserted"]:
+        base = (
+            df.set_index("Algorithm")
+            .loc[compared_algo]
+            .set_index(["Cache Size", "Trace Path"])[key]
+        )
+        base_val = df.set_index(["Cache Size", "Trace Path"]).index.map(base)
+        df[f"Abs. D. {key}"] = df[key] - base_val
+        df[f"Rel. D. {key}"] = (df[key] - base_val) / base_val
+
+
+def PaperMeasurement(df: pd.DataFrame):
+    lru_promos = df.set_index(["Cache Size", "Trace Path"]).index.map(
+        df.set_index("Algorithm")
+        .loc["LRU"]
+        .set_index(["Cache Size", "Trace Path"])["Reinserted"]
+    )
+    fifo_miss = df.set_index(["Cache Size", "Trace Path"]).index.map(
+        df.set_index("Algorithm")
+        .loc["FIFO"]
+        .set_index(["Cache Size", "Trace Path"])["Miss"]
+    )
+    df["[PAPER] Relative Miss Ratio"] = df["Miss"] / fifo_miss
+    df["[PAPER] Relative Promotion"] = df["Reinserted"] / lru_promos
+    df["[PAPER] Promotion Efficiency"] = (fifo_miss - df["Miss"]) / df["Reinserted"]
 
 
 def main():
-    log_path = os.path.join(DATA_PATH, "log")
-    files = sorted(glob(os.path.join(log_path, "*.json")), key=sort_key)
+    files = sorted(glob(os.path.join(DATA_PATH, "*.json")), key=sort_key)
 
     alg: dict[str, str | tuple[str, int]] = {
         "FIFO": "fifo",
@@ -108,8 +167,8 @@ def main():
         "QTime-Clock": "qtime-clock",
         "CLOCK": ("offline-clock", 0),
         "Offline CLOCK": ("offline-clock", 1),
-        "Offline Q-CLOCK": ("offline-q-clock", 1),
-        "Offline QTime-Clock": ("offline-qtime-clock", 1),
+        # "Offline Q-CLOCK": ("offline-q-clock", 1),
+        # "Offline QTime-Clock": ("offline-qtime-clock", 1),
     }
 
     dfs: list[pd.DataFrame] = []
@@ -121,18 +180,13 @@ def main():
             key_files = [f for f in files if key[0] in extract_desc(f)[1]]
             dfs.append(GetResult(key_files, name, key[1]))
 
-    combined = pd.concat(dfs)
+    df = pd.concat(dfs)
+    df = df.sort_values(by="Trace Path")
+    AdditionalProcessing(df)
+    PaperMeasurement(df)
+    show(df)
 
-    combined["P"] = combined["P"].astype("object")
-    combined["P"] = combined["P"].apply(
-        lambda x: [0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1]
-        if pd.isna(x)
-        else x
-    )
-    combined = combined.explode("P")
-
-    for group in combined["Trace Group"].unique():
-        GenerateSite(group, combined.query("`Trace Group` == @group"), "P")
+    # GenerateSite("index", df)
 
 
 if __name__ == "__main__":
