@@ -119,8 +119,8 @@ def GenerateSite(
 
         current_title = f"P = {p}"
         writer.Write(f"# {current_title}")
-        WriteAggregate(writer, df, current_title)
-        WriteIndividual(writer, df)
+        WriteAggregate(writer, data, current_title)
+        WriteIndividual(writer, data)
 
     writer.Flush()
     print("Finished generating " + title)
@@ -183,7 +183,6 @@ def main():
     df = df.sort_values(by="Trace Path")
     AdditionalProcessing(df)
     PaperMeasurement(df)
-    # __import__("pandasgui").show(df)
     GenerateSite("index", df)
 
 
