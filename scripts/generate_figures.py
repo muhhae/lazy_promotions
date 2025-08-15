@@ -4,14 +4,13 @@ from pathlib import Path
 from typing import Final
 
 import pandas as pd
-from pandasgui import show
 
 from common import extract_desc, sort_key
 from outputs_parser import GetResult
 from docs_writer import DocsWriter
 from plotly_wrapper import Box, Scatter
 
-OUTPUT_PATH: Final[str] = "../figures/"
+OUTPUT_PATH: Final[str] = "../docs/"
 DATA_PATH: Final[str] = "../paper/log/"
 ALGO_ORDERS = [
     "FIFO",
@@ -184,9 +183,8 @@ def main():
     df = df.sort_values(by="Trace Path")
     AdditionalProcessing(df)
     PaperMeasurement(df)
-    show(df)
-
-    # GenerateSite("index", df)
+    # __import__("pandasgui").show(df)
+    GenerateSite("index", df)
 
 
 if __name__ == "__main__":
