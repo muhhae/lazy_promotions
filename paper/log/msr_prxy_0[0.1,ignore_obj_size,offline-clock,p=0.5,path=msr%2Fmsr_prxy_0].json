@@ -1,0 +1,51 @@
+{
+  "dram_cache_size": 155,
+  "flash_cache_size": 15568,
+  "results": [
+    {
+      "hit": 11904460,
+      "iteration": 0,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "offline-clock",
+          "byte_inserted": 614508,
+          "byte_miss": 614508,
+          "byte_read": 11904460,
+          "byte_reinserted": 553480,
+          "hit": 11904460,
+          "inserted": 614508,
+          "layer": 0,
+          "miss_ratio": 0.049086154705403784,
+          "reinserted": 553480,
+          "req": 12518968
+        }
+      ],
+      "miss_ratio": 0.049086154705403784,
+      "req": 12518968
+    },
+    {
+      "hit": 11960176,
+      "iteration": 1,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "offline-clock",
+          "byte_inserted": 1173300,
+          "byte_miss": 1173300,
+          "byte_read": 23864636,
+          "byte_reinserted": 818213,
+          "hit": 11960176,
+          "inserted": 558792,
+          "layer": 0,
+          "miss_ratio": 0.04463562811247701,
+          "reinserted": 264733,
+          "req": 12518968
+        }
+      ],
+      "miss_ratio": 0.04463562811247701,
+      "req": 12518968
+    }
+  ],
+  "trace": "msr_prxy_0.oracleGeneral.zst"
+}

@@ -1,0 +1,51 @@
+{
+  "dram_cache_size": 15087,
+  "flash_cache_size": 1508723,
+  "results": [
+    {
+      "hit": 28,
+      "iteration": 0,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "offline-clock",
+          "byte_inserted": 15087241,
+          "byte_miss": 15087241,
+          "byte_read": 28,
+          "byte_reinserted": 20,
+          "hit": 28,
+          "inserted": 15087241,
+          "layer": 0,
+          "miss_ratio": 0.9999981441306575,
+          "reinserted": 20,
+          "req": 15087269
+        }
+      ],
+      "miss_ratio": 0.9999981441306575,
+      "req": 15087269
+    },
+    {
+      "hit": 28,
+      "iteration": 1,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "offline-clock",
+          "byte_inserted": 30174482,
+          "byte_miss": 30174482,
+          "byte_read": 56,
+          "byte_reinserted": 25,
+          "hit": 28,
+          "inserted": 15087241,
+          "layer": 0,
+          "miss_ratio": 0.9999981441306575,
+          "reinserted": 5,
+          "req": 15087269
+        }
+      ],
+      "miss_ratio": 0.9999981441306575,
+      "req": 15087269
+    }
+  ],
+  "trace": "generic_notification_deduplication_cache.1.oracleGeneral.sample10.zst"
+}

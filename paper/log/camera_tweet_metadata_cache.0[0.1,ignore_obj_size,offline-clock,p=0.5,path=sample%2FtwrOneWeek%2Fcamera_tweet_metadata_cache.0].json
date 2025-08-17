@@ -1,0 +1,51 @@
+{
+  "dram_cache_size": 53632,
+  "flash_cache_size": 5363229,
+  "results": [
+    {
+      "hit": 63082317,
+      "iteration": 0,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "offline-clock",
+          "byte_inserted": 58712695,
+          "byte_miss": 58712695,
+          "byte_read": 63082317,
+          "byte_reinserted": 49596430,
+          "hit": 63082317,
+          "inserted": 58712695,
+          "layer": 0,
+          "miss_ratio": 0.48206157243943615,
+          "reinserted": 49596430,
+          "req": 121795012
+        }
+      ],
+      "miss_ratio": 0.48206157243943615,
+      "req": 121795012
+    },
+    {
+      "hit": 63312281,
+      "iteration": 1,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "offline-clock",
+          "byte_inserted": 117195426,
+          "byte_miss": 117195426,
+          "byte_read": 126394598,
+          "byte_reinserted": 52186396,
+          "hit": 63312281,
+          "inserted": 58482731,
+          "layer": 0,
+          "miss_ratio": 0.48017344913928006,
+          "reinserted": 2589966,
+          "req": 121795012
+        }
+      ],
+      "miss_ratio": 0.48017344913928006,
+      "req": 121795012
+    }
+  ],
+  "trace": "camera_tweet_metadata_cache.0.oracleGeneral.sample10.zst"
+}

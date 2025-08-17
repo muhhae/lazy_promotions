@@ -1,0 +1,51 @@
+{
+  "dram_cache_size": 548,
+  "flash_cache_size": 54845,
+  "results": [
+    {
+      "hit": 12812933,
+      "iteration": 0,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "offline-clock",
+          "byte_inserted": 2392859,
+          "byte_miss": 2392859,
+          "byte_read": 12812933,
+          "byte_reinserted": 2657631,
+          "hit": 12812933,
+          "inserted": 2392859,
+          "layer": 0,
+          "miss_ratio": 0.15736496987463722,
+          "reinserted": 2657631,
+          "req": 15205792
+        }
+      ],
+      "miss_ratio": 0.15736496987463722,
+      "req": 15205792
+    },
+    {
+      "hit": 12931842,
+      "iteration": 1,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "offline-clock",
+          "byte_inserted": 4666809,
+          "byte_miss": 4666809,
+          "byte_read": 25744775,
+          "byte_reinserted": 3175078,
+          "hit": 12931842,
+          "inserted": 2273950,
+          "layer": 0,
+          "miss_ratio": 0.14954498917254688,
+          "reinserted": 517447,
+          "req": 15205792
+        }
+      ],
+      "miss_ratio": 0.14954498917254688,
+      "req": 15205792
+    }
+  ],
+  "trace": "cortex_nsfa_botmaker_user_blacklist_cache.1.oracleGeneral.sample10.zst"
+}

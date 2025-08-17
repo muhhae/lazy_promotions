@@ -1,0 +1,51 @@
+{
+  "dram_cache_size": 116,
+  "flash_cache_size": 11619,
+  "results": [
+    {
+      "hit": 3472092,
+      "iteration": 0,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "offline-clock",
+          "byte_inserted": 681704,
+          "byte_miss": 681704,
+          "byte_read": 3472092,
+          "byte_reinserted": 651246,
+          "hit": 3472092,
+          "inserted": 681704,
+          "layer": 0,
+          "miss_ratio": 0.16411590747354954,
+          "reinserted": 651246,
+          "req": 4153796
+        }
+      ],
+      "miss_ratio": 0.16411590747354954,
+      "req": 4153796
+    },
+    {
+      "hit": 3510753,
+      "iteration": 1,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "offline-clock",
+          "byte_inserted": 1324747,
+          "byte_miss": 1324747,
+          "byte_read": 6982845,
+          "byte_reinserted": 966399,
+          "hit": 3510753,
+          "inserted": 643043,
+          "layer": 0,
+          "miss_ratio": 0.15480851731765355,
+          "reinserted": 315153,
+          "req": 4153796
+        }
+      ],
+      "miss_ratio": 0.15480851731765355,
+      "req": 4153796
+    }
+  ],
+  "trace": "akamai_lax.ns194.oracleGeneral.bin.zst"
+}

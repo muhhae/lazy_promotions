@@ -1,0 +1,51 @@
+{
+  "dram_cache_size": 852,
+  "flash_cache_size": 85244,
+  "results": [
+    {
+      "hit": 228264070,
+      "iteration": 0,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "offline-clock",
+          "byte_inserted": 5380549,
+          "byte_miss": 5380549,
+          "byte_read": 228264070,
+          "byte_reinserted": 8590410,
+          "hit": 228264070,
+          "inserted": 5380549,
+          "layer": 0,
+          "miss_ratio": 0.023028773455296192,
+          "reinserted": 8590410,
+          "req": 233644619
+        }
+      ],
+      "miss_ratio": 0.023028773455296192,
+      "req": 233644619
+    },
+    {
+      "hit": 228674261,
+      "iteration": 1,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "offline-clock",
+          "byte_inserted": 10350907,
+          "byte_miss": 10350907,
+          "byte_read": 456938331,
+          "byte_reinserted": 11402412,
+          "hit": 228674261,
+          "inserted": 4970358,
+          "layer": 0,
+          "miss_ratio": 0.021273154165814545,
+          "reinserted": 2812002,
+          "req": 233644619
+        }
+      ],
+      "miss_ratio": 0.021273154165814545,
+      "req": 233644619
+    }
+  ],
+  "trace": "magicrecs_real_time_aggregates_cache.0.oracleGeneral.sample10.zst"
+}

@@ -1,0 +1,51 @@
+{
+  "dram_cache_size": 4262,
+  "flash_cache_size": 426234,
+  "results": [
+    {
+      "hit": 5317418,
+      "iteration": 0,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "offline-clock",
+          "byte_inserted": 4284277,
+          "byte_miss": 4284277,
+          "byte_read": 5317418,
+          "byte_reinserted": 4265282,
+          "hit": 5317418,
+          "inserted": 4284277,
+          "layer": 0,
+          "miss_ratio": 0.44620007196646005,
+          "reinserted": 4265282,
+          "req": 9601695
+        }
+      ],
+      "miss_ratio": 0.44620007196646005,
+      "req": 9601695
+    },
+    {
+      "hit": 5317596,
+      "iteration": 1,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "offline-clock",
+          "byte_inserted": 8568376,
+          "byte_miss": 8568376,
+          "byte_read": 10635014,
+          "byte_reinserted": 4309518,
+          "hit": 5317596,
+          "inserted": 4284099,
+          "layer": 0,
+          "miss_ratio": 0.4461815335729785,
+          "reinserted": 44236,
+          "req": 9601695
+        }
+      ],
+      "miss_ratio": 0.4461815335729785,
+      "req": 9601695
+    }
+  ],
+  "trace": "twemcache_video_spam_cache.1.oracleGeneral.sample10.zst"
+}

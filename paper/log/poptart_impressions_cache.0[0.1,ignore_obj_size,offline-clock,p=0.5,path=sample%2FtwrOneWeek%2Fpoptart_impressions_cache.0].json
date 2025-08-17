@@ -1,0 +1,51 @@
+{
+  "dram_cache_size": 1236,
+  "flash_cache_size": 123678,
+  "results": [
+    {
+      "hit": 218513077,
+      "iteration": 0,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "offline-clock",
+          "byte_inserted": 1946099,
+          "byte_miss": 1946099,
+          "byte_read": 218513077,
+          "byte_reinserted": 3759834,
+          "hit": 218513077,
+          "inserted": 1946099,
+          "layer": 0,
+          "miss_ratio": 0.008827480149884992,
+          "reinserted": 3759834,
+          "req": 220459176
+        }
+      ],
+      "miss_ratio": 0.008827480149884992,
+      "req": 220459176
+    },
+    {
+      "hit": 218542870,
+      "iteration": 1,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "offline-clock",
+          "byte_inserted": 3862405,
+          "byte_miss": 3862405,
+          "byte_read": 437055947,
+          "byte_reinserted": 4842115,
+          "hit": 218542870,
+          "inserted": 1916306,
+          "layer": 0,
+          "miss_ratio": 0.008692339483297395,
+          "reinserted": 1082281,
+          "req": 220459176
+        }
+      ],
+      "miss_ratio": 0.008692339483297395,
+      "req": 220459176
+    }
+  ],
+  "trace": "poptart_impressions_cache.0.oracleGeneral.sample10.zst"
+}

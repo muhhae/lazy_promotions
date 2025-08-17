@@ -1,0 +1,51 @@
+{
+  "dram_cache_size": 164,
+  "flash_cache_size": 16476,
+  "results": [
+    {
+      "hit": 70636544,
+      "iteration": 0,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "offline-clock",
+          "byte_inserted": 7889061,
+          "byte_miss": 7889061,
+          "byte_read": 70636544,
+          "byte_reinserted": 4966432,
+          "hit": 70636544,
+          "inserted": 7889061,
+          "layer": 0,
+          "miss_ratio": 0.10046482290712688,
+          "reinserted": 4966432,
+          "req": 78525605
+        }
+      ],
+      "miss_ratio": 0.10046482290712688,
+      "req": 78525605
+    },
+    {
+      "hit": 71111545,
+      "iteration": 1,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "offline-clock",
+          "byte_inserted": 15303121,
+          "byte_miss": 15303121,
+          "byte_read": 141748089,
+          "byte_reinserted": 6949761,
+          "hit": 71111545,
+          "inserted": 7414060,
+          "layer": 0,
+          "miss_ratio": 0.09441582780546554,
+          "reinserted": 1983329,
+          "req": 78525605
+        }
+      ],
+      "miss_ratio": 0.09441582780546554,
+      "req": 78525605
+    }
+  ],
+  "trace": "timelines_impressionstore_cache.1.oracleGeneral.sample10.zst"
+}

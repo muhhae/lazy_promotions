@@ -1,0 +1,51 @@
+{
+  "dram_cache_size": 24215,
+  "flash_cache_size": 2421516,
+  "results": [
+    {
+      "hit": 610367795,
+      "iteration": 0,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "offline-clock",
+          "byte_inserted": 32747149,
+          "byte_miss": 32747149,
+          "byte_read": 610367795,
+          "byte_reinserted": 35308325,
+          "hit": 610367795,
+          "inserted": 32747149,
+          "layer": 0,
+          "miss_ratio": 0.05091958957806464,
+          "reinserted": 35308325,
+          "req": 643114944
+        }
+      ],
+      "miss_ratio": 0.05091958957806464,
+      "req": 643114944
+    },
+    {
+      "hit": 610725643,
+      "iteration": 1,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "offline-clock",
+          "byte_inserted": 65136450,
+          "byte_miss": 65136450,
+          "byte_read": 1221093438,
+          "byte_reinserted": 41977803,
+          "hit": 610725643,
+          "inserted": 32389301,
+          "layer": 0,
+          "miss_ratio": 0.050363160275124885,
+          "reinserted": 6669478,
+          "req": 643114944
+        }
+      ],
+      "miss_ratio": 0.050363160275124885,
+      "req": 643114944
+    }
+  ],
+  "trace": "pinkfloyd_cache.0.oracleGeneral.sample10.zst"
+}

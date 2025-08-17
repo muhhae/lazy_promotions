@@ -1,0 +1,51 @@
+{
+  "dram_cache_size": 16101,
+  "flash_cache_size": 1610184,
+  "results": [
+    {
+      "hit": 160173008,
+      "iteration": 0,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "offline-clock",
+          "byte_inserted": 16583792,
+          "byte_miss": 16583792,
+          "byte_read": 160173008,
+          "byte_reinserted": 11839293,
+          "hit": 160173008,
+          "inserted": 16583792,
+          "layer": 0,
+          "miss_ratio": 0.09382265349904506,
+          "reinserted": 11839293,
+          "req": 176756800
+        }
+      ],
+      "miss_ratio": 0.09382265349904506,
+      "req": 176756800
+    },
+    {
+      "hit": 160192366,
+      "iteration": 1,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "offline-clock",
+          "byte_inserted": 33148226,
+          "byte_miss": 33148226,
+          "byte_read": 320365374,
+          "byte_reinserted": 12843747,
+          "hit": 160192366,
+          "inserted": 16564434,
+          "layer": 0,
+          "miss_ratio": 0.09371313578883533,
+          "reinserted": 1004454,
+          "req": 176756800
+        }
+      ],
+      "miss_ratio": 0.09371313578883533,
+      "req": 176756800
+    }
+  ],
+  "trace": "cuad_ner_cfb_cache.0.oracleGeneral.sample10.zst"
+}

@@ -1,0 +1,51 @@
+{
+  "dram_cache_size": 344,
+  "flash_cache_size": 34411,
+  "results": [
+    {
+      "hit": 8554437,
+      "iteration": 0,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "offline-clock",
+          "byte_inserted": 743500,
+          "byte_miss": 743500,
+          "byte_read": 8554437,
+          "byte_reinserted": 430296,
+          "hit": 8554437,
+          "inserted": 743500,
+          "layer": 0,
+          "miss_ratio": 0.0799639748043034,
+          "reinserted": 430296,
+          "req": 9297937
+        }
+      ],
+      "miss_ratio": 0.0799639748043034,
+      "req": 9297937
+    },
+    {
+      "hit": 8571860,
+      "iteration": 1,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "offline-clock",
+          "byte_inserted": 1469577,
+          "byte_miss": 1469577,
+          "byte_read": 17126297,
+          "byte_reinserted": 603065,
+          "hit": 8571860,
+          "inserted": 726077,
+          "layer": 0,
+          "miss_ratio": 0.07809011827032164,
+          "reinserted": 172769,
+          "req": 9297937
+        }
+      ],
+      "miss_ratio": 0.07809011827032164,
+      "req": 9297937
+    }
+  ],
+  "trace": "entity_real_graph_entities_cache.0.oracleGeneral.sample10.zst"
+}

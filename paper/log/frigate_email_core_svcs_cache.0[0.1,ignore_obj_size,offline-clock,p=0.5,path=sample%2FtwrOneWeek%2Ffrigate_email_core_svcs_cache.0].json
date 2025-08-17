@@ -1,0 +1,51 @@
+{
+  "dram_cache_size": 10080,
+  "flash_cache_size": 1008050,
+  "results": [
+    {
+      "hit": 1924035789,
+      "iteration": 0,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "offline-clock",
+          "byte_inserted": 192989319,
+          "byte_miss": 192989319,
+          "byte_read": 1924035789,
+          "byte_reinserted": 273152332,
+          "hit": 1924035789,
+          "inserted": 192989319,
+          "layer": 0,
+          "miss_ratio": 0.09116061886593363,
+          "reinserted": 273152332,
+          "req": 2117025108
+        }
+      ],
+      "miss_ratio": 0.09116061886593363,
+      "req": 2117025108
+    },
+    {
+      "hit": 1947250390,
+      "iteration": 1,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "offline-clock",
+          "byte_inserted": 362764037,
+          "byte_miss": 362764037,
+          "byte_read": 3871286179,
+          "byte_reinserted": 328961420,
+          "hit": 1947250390,
+          "inserted": 169774718,
+          "layer": 0,
+          "miss_ratio": 0.08019494778708125,
+          "reinserted": 55809088,
+          "req": 2117025108
+        }
+      ],
+      "miss_ratio": 0.08019494778708125,
+      "req": 2117025108
+    }
+  ],
+  "trace": "frigate_email_core_svcs_cache.0.oracleGeneral.sample10.zst"
+}

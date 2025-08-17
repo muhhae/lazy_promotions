@@ -1,0 +1,51 @@
+{
+  "dram_cache_size": 20645,
+  "flash_cache_size": 2064598,
+  "results": [
+    {
+      "hit": 67967988,
+      "iteration": 0,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "offline-clock",
+          "byte_inserted": 35703867,
+          "byte_miss": 35703867,
+          "byte_read": 67967988,
+          "byte_reinserted": 20477835,
+          "hit": 67967988,
+          "inserted": 35703867,
+          "layer": 0,
+          "miss_ratio": 0.34439305634108697,
+          "reinserted": 20477835,
+          "req": 103671855
+        }
+      ],
+      "miss_ratio": 0.34439305634108697,
+      "req": 103671855
+    },
+    {
+      "hit": 68510217,
+      "iteration": 1,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "offline-clock",
+          "byte_inserted": 70865505,
+          "byte_miss": 70865505,
+          "byte_read": 136478205,
+          "byte_reinserted": 24935387,
+          "hit": 68510217,
+          "inserted": 35161638,
+          "layer": 0,
+          "miss_ratio": 0.3391628132823513,
+          "reinserted": 4457552,
+          "req": 103671855
+        }
+      ],
+      "miss_ratio": 0.3391628132823513,
+      "req": 103671855
+    }
+  ],
+  "trace": "timelines_follow_socialproof_cache.1.oracleGeneral.sample10.zst"
+}

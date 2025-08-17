@@ -1,0 +1,51 @@
+{
+  "dram_cache_size": 248,
+  "flash_cache_size": 24894,
+  "results": [
+    {
+      "hit": 26251209,
+      "iteration": 0,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "offline-clock",
+          "byte_inserted": 1760673,
+          "byte_miss": 1760673,
+          "byte_read": 26251209,
+          "byte_reinserted": 2779563,
+          "hit": 26251209,
+          "inserted": 1760673,
+          "layer": 0,
+          "miss_ratio": 0.06285450581292606,
+          "reinserted": 2779563,
+          "req": 28011882
+        }
+      ],
+      "miss_ratio": 0.06285450581292606,
+      "req": 28011882
+    },
+    {
+      "hit": 26320641,
+      "iteration": 1,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "offline-clock",
+          "byte_inserted": 3451914,
+          "byte_miss": 3451914,
+          "byte_read": 52571850,
+          "byte_reinserted": 3238371,
+          "hit": 26320641,
+          "inserted": 1691241,
+          "layer": 0,
+          "miss_ratio": 0.0603758433653262,
+          "reinserted": 458808,
+          "req": 28011882
+        }
+      ],
+      "miss_ratio": 0.0603758433653262,
+      "req": 28011882
+    }
+  ],
+  "trace": "atm_user_nsfa_user_score_cache.1.oracleGeneral.sample10.zst"
+}

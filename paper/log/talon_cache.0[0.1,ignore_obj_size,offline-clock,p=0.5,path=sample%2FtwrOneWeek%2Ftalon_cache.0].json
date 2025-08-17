@@ -1,0 +1,51 @@
+{
+  "dram_cache_size": 6385,
+  "flash_cache_size": 638504,
+  "results": [
+    {
+      "hit": 13571789,
+      "iteration": 0,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "offline-clock",
+          "byte_inserted": 8252499,
+          "byte_miss": 8252499,
+          "byte_read": 13571789,
+          "byte_reinserted": 4128622,
+          "hit": 13571789,
+          "inserted": 8252499,
+          "layer": 0,
+          "miss_ratio": 0.378133710478894,
+          "reinserted": 4128622,
+          "req": 21824288
+        }
+      ],
+      "miss_ratio": 0.378133710478894,
+      "req": 21824288
+    },
+    {
+      "hit": 13644504,
+      "iteration": 1,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "offline-clock",
+          "byte_inserted": 16432283,
+          "byte_miss": 16432283,
+          "byte_read": 27216293,
+          "byte_reinserted": 4684725,
+          "hit": 13644504,
+          "inserted": 8179784,
+          "layer": 0,
+          "miss_ratio": 0.3748018721160571,
+          "reinserted": 556103,
+          "req": 21824288
+        }
+      ],
+      "miss_ratio": 0.3748018721160571,
+      "req": 21824288
+    }
+  ],
+  "trace": "talon_cache.0.oracleGeneral.sample10.zst"
+}

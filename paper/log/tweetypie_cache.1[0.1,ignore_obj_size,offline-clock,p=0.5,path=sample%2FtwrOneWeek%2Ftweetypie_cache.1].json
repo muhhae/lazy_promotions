@@ -1,0 +1,51 @@
+{
+  "dram_cache_size": 24498,
+  "flash_cache_size": 2449846,
+  "results": [
+    {
+      "hit": 1250206213,
+      "iteration": 0,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "offline-clock",
+          "byte_inserted": 65292407,
+          "byte_miss": 65292407,
+          "byte_read": 1250206213,
+          "byte_reinserted": 71458050,
+          "hit": 1250206213,
+          "inserted": 65292407,
+          "layer": 0,
+          "miss_ratio": 0.04963320067945032,
+          "reinserted": 71458050,
+          "req": 1315498620
+        }
+      ],
+      "miss_ratio": 0.04963320067945032,
+      "req": 1315498620
+    },
+    {
+      "hit": 1252425505,
+      "iteration": 1,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "offline-clock",
+          "byte_inserted": 128365522,
+          "byte_miss": 128365522,
+          "byte_read": 2502631718,
+          "byte_reinserted": 88589246,
+          "hit": 1252425505,
+          "inserted": 63073115,
+          "layer": 0,
+          "miss_ratio": 0.04794616584242406,
+          "reinserted": 17131196,
+          "req": 1315498620
+        }
+      ],
+      "miss_ratio": 0.04794616584242406,
+      "req": 1315498620
+    }
+  ],
+  "trace": "tweetypie_cache.1.oracleGeneral.sample10.zst"
+}

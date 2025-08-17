@@ -1,0 +1,51 @@
+{
+  "dram_cache_size": 9210,
+  "flash_cache_size": 921098,
+  "results": [
+    {
+      "hit": 39232722,
+      "iteration": 0,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "offline-clock",
+          "byte_inserted": 29302716,
+          "byte_miss": 29302716,
+          "byte_read": 39232722,
+          "byte_reinserted": 29951909,
+          "hit": 39232722,
+          "inserted": 29302716,
+          "layer": 0,
+          "miss_ratio": 0.4275556829446395,
+          "reinserted": 29951909,
+          "req": 68535438
+        }
+      ],
+      "miss_ratio": 0.4275556829446395,
+      "req": 68535438
+    },
+    {
+      "hit": 39454738,
+      "iteration": 1,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "offline-clock",
+          "byte_inserted": 58383416,
+          "byte_miss": 58383416,
+          "byte_read": 78687460,
+          "byte_reinserted": 30107593,
+          "hit": 39454738,
+          "inserted": 29080700,
+          "layer": 0,
+          "miss_ratio": 0.4243162493540933,
+          "reinserted": 155684,
+          "req": 68535438
+        }
+      ],
+      "miss_ratio": 0.4243162493540933,
+      "req": 68535438
+    }
+  ],
+  "trace": "email_engagement_count_prod_cache.1.oracleGeneral.sample10.zst"
+}

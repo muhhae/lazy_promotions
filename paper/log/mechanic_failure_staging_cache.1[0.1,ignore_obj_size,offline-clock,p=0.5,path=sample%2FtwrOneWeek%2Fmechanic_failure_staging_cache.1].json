@@ -1,0 +1,51 @@
+{
+  "dram_cache_size": 355,
+  "flash_cache_size": 35543,
+  "results": [
+    {
+      "hit": 67268982,
+      "iteration": 0,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "offline-clock",
+          "byte_inserted": 57820554,
+          "byte_miss": 57820554,
+          "byte_read": 67268982,
+          "byte_reinserted": 25709062,
+          "hit": 67268982,
+          "inserted": 57820554,
+          "layer": 0,
+          "miss_ratio": 0.4622333398054974,
+          "reinserted": 25709062,
+          "req": 125089536
+        }
+      ],
+      "miss_ratio": 0.4622333398054974,
+      "req": 125089536
+    },
+    {
+      "hit": 67348395,
+      "iteration": 1,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "offline-clock",
+          "byte_inserted": 115561695,
+          "byte_miss": 115561695,
+          "byte_read": 134617377,
+          "byte_reinserted": 25994994,
+          "hit": 67348395,
+          "inserted": 57741141,
+          "layer": 0,
+          "miss_ratio": 0.4615984905404078,
+          "reinserted": 285932,
+          "req": 125089536
+        }
+      ],
+      "miss_ratio": 0.4615984905404078,
+      "req": 125089536
+    }
+  ],
+  "trace": "mechanic_failure_staging_cache.1.oracleGeneral.sample10.zst"
+}

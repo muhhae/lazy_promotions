@@ -1,0 +1,51 @@
+{
+  "dram_cache_size": 142845,
+  "flash_cache_size": 14284586,
+  "results": [
+    {
+      "hit": 1146734,
+      "iteration": 0,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "offline-clock",
+          "byte_inserted": 142856061,
+          "byte_miss": 142856061,
+          "byte_read": 1146734,
+          "byte_reinserted": 563434,
+          "hit": 1146734,
+          "inserted": 142856061,
+          "layer": 0,
+          "miss_ratio": 0.9920367240094194,
+          "reinserted": 563434,
+          "req": 144002795
+        }
+      ],
+      "miss_ratio": 0.9920367240094194,
+      "req": 144002795
+    },
+    {
+      "hit": 1146745,
+      "iteration": 1,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "offline-clock",
+          "byte_inserted": 285712111,
+          "byte_miss": 285712111,
+          "byte_read": 2293479,
+          "byte_reinserted": 623144,
+          "hit": 1146745,
+          "inserted": 142856050,
+          "layer": 0,
+          "miss_ratio": 0.9920366476220132,
+          "reinserted": 59710,
+          "req": 144002795
+        }
+      ],
+      "miss_ratio": 0.9920366476220132,
+      "req": 144002795
+    }
+  ],
+  "trace": "geolocationservice_cache.0.oracleGeneral.sample10.zst"
+}

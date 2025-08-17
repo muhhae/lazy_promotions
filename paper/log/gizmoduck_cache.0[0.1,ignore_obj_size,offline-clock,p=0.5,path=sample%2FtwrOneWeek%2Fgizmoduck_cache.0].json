@@ -1,0 +1,51 @@
+{
+  "dram_cache_size": 655,
+  "flash_cache_size": 65535,
+  "results": [
+    {
+      "hit": 807989603,
+      "iteration": 0,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "offline-clock",
+          "byte_inserted": 6072736,
+          "byte_miss": 6072736,
+          "byte_read": 807989603,
+          "byte_reinserted": 11240958,
+          "hit": 807989603,
+          "inserted": 6072736,
+          "layer": 0,
+          "miss_ratio": 0.0074597923390729015,
+          "reinserted": 11240958,
+          "req": 814062339
+        }
+      ],
+      "miss_ratio": 0.0074597923390729015,
+      "req": 814062339
+    },
+    {
+      "hit": 808732129,
+      "iteration": 1,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "offline-clock",
+          "byte_inserted": 11402946,
+          "byte_miss": 11402946,
+          "byte_read": 1616721732,
+          "byte_reinserted": 16902116,
+          "hit": 808732129,
+          "inserted": 5330210,
+          "layer": 0,
+          "miss_ratio": 0.006547668089581071,
+          "reinserted": 5661158,
+          "req": 814062339
+        }
+      ],
+      "miss_ratio": 0.006547668089581071,
+      "req": 814062339
+    }
+  ],
+  "trace": "gizmoduck_cache.0.oracleGeneral.sample10.zst"
+}

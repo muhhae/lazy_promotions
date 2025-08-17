@@ -1,0 +1,51 @@
+{
+  "dram_cache_size": 0,
+  "flash_cache_size": 45,
+  "results": [
+    {
+      "hit": 8922905,
+      "iteration": 0,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "offline-clock",
+          "byte_inserted": 491,
+          "byte_miss": 491,
+          "byte_read": 8922905,
+          "byte_reinserted": 612,
+          "hit": 8922905,
+          "inserted": 491,
+          "layer": 0,
+          "miss_ratio": 5.502389449041356e-05,
+          "reinserted": 612,
+          "req": 8923396
+        }
+      ],
+      "miss_ratio": 5.502389449041356e-05,
+      "req": 8923396
+    },
+    {
+      "hit": 8922905,
+      "iteration": 1,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "offline-clock",
+          "byte_inserted": 982,
+          "byte_miss": 982,
+          "byte_read": 17845810,
+          "byte_reinserted": 777,
+          "hit": 8922905,
+          "inserted": 491,
+          "layer": 0,
+          "miss_ratio": 5.502389449041356e-05,
+          "reinserted": 165,
+          "req": 8923396
+        }
+      ],
+      "miss_ratio": 5.502389449041356e-05,
+      "req": 8923396
+    }
+  ],
+  "trace": "manhattan_feeder_prod_cache.0.oracleGeneral.sample10.zst"
+}

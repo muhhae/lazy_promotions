@@ -1,0 +1,51 @@
+{
+  "dram_cache_size": 354,
+  "flash_cache_size": 35417,
+  "results": [
+    {
+      "hit": 688672425,
+      "iteration": 0,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "offline-clock",
+          "byte_inserted": 2402476,
+          "byte_miss": 2402476,
+          "byte_read": 688672425,
+          "byte_reinserted": 4629801,
+          "hit": 688672425,
+          "inserted": 2402476,
+          "layer": 0,
+          "miss_ratio": 0.00347643359138583,
+          "reinserted": 4629801,
+          "req": 691074901
+        }
+      ],
+      "miss_ratio": 0.00347643359138583,
+      "req": 691074901
+    },
+    {
+      "hit": 688798624,
+      "iteration": 1,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "offline-clock",
+          "byte_inserted": 4678753,
+          "byte_miss": 4678753,
+          "byte_read": 1377471049,
+          "byte_reinserted": 5472180,
+          "hit": 688798624,
+          "inserted": 2276277,
+          "layer": 0,
+          "miss_ratio": 0.00329382096890829,
+          "reinserted": 842379,
+          "req": 691074901
+        }
+      ],
+      "miss_ratio": 0.00329382096890829,
+      "req": 691074901
+    }
+  ],
+  "trace": "ads_ranking_feature_store_cache.0.oracleGeneral.sample10.zst"
+}

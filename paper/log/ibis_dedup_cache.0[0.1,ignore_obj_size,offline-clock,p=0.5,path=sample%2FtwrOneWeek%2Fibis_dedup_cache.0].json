@@ -1,0 +1,51 @@
+{
+  "dram_cache_size": 138512,
+  "flash_cache_size": 13851223,
+  "results": [
+    {
+      "hit": 8510036,
+      "iteration": 0,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "offline-clock",
+          "byte_inserted": 138976683,
+          "byte_miss": 138976683,
+          "byte_read": 8510036,
+          "byte_reinserted": 1544952,
+          "hit": 8510036,
+          "inserted": 138976683,
+          "layer": 0,
+          "miss_ratio": 0.94229964529891,
+          "reinserted": 1544952,
+          "req": 147486719
+        }
+      ],
+      "miss_ratio": 0.94229964529891,
+      "req": 147486719
+    },
+    {
+      "hit": 8509726,
+      "iteration": 1,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "offline-clock",
+          "byte_inserted": 277953676,
+          "byte_miss": 277953676,
+          "byte_read": 17019762,
+          "byte_reinserted": 1902307,
+          "hit": 8509726,
+          "inserted": 138976993,
+          "layer": 0,
+          "miss_ratio": 0.9423017471830802,
+          "reinserted": 357355,
+          "req": 147486719
+        }
+      ],
+      "miss_ratio": 0.9423017471830802,
+      "req": 147486719
+    }
+  ],
+  "trace": "ibis_dedup_cache.0.oracleGeneral.sample10.zst"
+}

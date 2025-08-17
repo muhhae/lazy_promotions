@@ -1,0 +1,51 @@
+{
+  "dram_cache_size": 7,
+  "flash_cache_size": 721,
+  "results": [
+    {
+      "hit": 1562268,
+      "iteration": 0,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "offline-clock",
+          "byte_inserted": 313345,
+          "byte_miss": 313345,
+          "byte_read": 1562268,
+          "byte_reinserted": 483700,
+          "hit": 1562268,
+          "inserted": 313345,
+          "layer": 0,
+          "miss_ratio": 0.1670627149630547,
+          "reinserted": 483700,
+          "req": 1875613
+        }
+      ],
+      "miss_ratio": 0.1670627149630547,
+      "req": 1875613
+    },
+    {
+      "hit": 1583306,
+      "iteration": 1,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "offline-clock",
+          "byte_inserted": 605652,
+          "byte_miss": 605652,
+          "byte_read": 3145574,
+          "byte_reinserted": 768677,
+          "hit": 1583306,
+          "inserted": 292307,
+          "layer": 0,
+          "miss_ratio": 0.15584611537667947,
+          "reinserted": 284977,
+          "req": 1875613
+        }
+      ],
+      "miss_ratio": 0.15584611537667947,
+      "req": 1875613
+    }
+  ],
+  "trace": "cf_colo28.ns4396.oracleGeneral.zst"
+}

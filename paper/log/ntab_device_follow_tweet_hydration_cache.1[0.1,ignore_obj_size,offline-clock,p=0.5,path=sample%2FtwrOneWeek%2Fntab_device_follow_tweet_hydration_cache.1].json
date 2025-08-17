@@ -1,0 +1,51 @@
+{
+  "dram_cache_size": 763,
+  "flash_cache_size": 76326,
+  "results": [
+    {
+      "hit": 215015489,
+      "iteration": 0,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "offline-clock",
+          "byte_inserted": 19463845,
+          "byte_miss": 19463845,
+          "byte_read": 215015489,
+          "byte_reinserted": 31635373,
+          "hit": 215015489,
+          "inserted": 19463845,
+          "layer": 0,
+          "miss_ratio": 0.08300878660803435,
+          "reinserted": 31635373,
+          "req": 234479334
+        }
+      ],
+      "miss_ratio": 0.08300878660803435,
+      "req": 234479334
+    },
+    {
+      "hit": 215666345,
+      "iteration": 1,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "offline-clock",
+          "byte_inserted": 38276834,
+          "byte_miss": 38276834,
+          "byte_read": 430681834,
+          "byte_reinserted": 36533547,
+          "hit": 215666345,
+          "inserted": 18812989,
+          "layer": 0,
+          "miss_ratio": 0.08023303665644155,
+          "reinserted": 4898174,
+          "req": 234479334
+        }
+      ],
+      "miss_ratio": 0.08023303665644155,
+      "req": 234479334
+    }
+  ],
+  "trace": "ntab_device_follow_tweet_hydration_cache.1.oracleGeneral.sample10.zst"
+}

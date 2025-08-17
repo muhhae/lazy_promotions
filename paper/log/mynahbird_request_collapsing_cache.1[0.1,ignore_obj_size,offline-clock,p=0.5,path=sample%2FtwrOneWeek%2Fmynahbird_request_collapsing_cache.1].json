@@ -1,0 +1,51 @@
+{
+  "dram_cache_size": 2677,
+  "flash_cache_size": 267713,
+  "results": [
+    {
+      "hit": 7956245,
+      "iteration": 0,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "offline-clock",
+          "byte_inserted": 2677435,
+          "byte_miss": 2677435,
+          "byte_read": 7956245,
+          "byte_reinserted": 2677198,
+          "hit": 7956245,
+          "inserted": 2677435,
+          "layer": 0,
+          "miss_ratio": 0.2517881862158726,
+          "reinserted": 2677198,
+          "req": 10633680
+        }
+      ],
+      "miss_ratio": 0.2517881862158726,
+      "req": 10633680
+    },
+    {
+      "hit": 7956245,
+      "iteration": 1,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "offline-clock",
+          "byte_inserted": 5354870,
+          "byte_miss": 5354870,
+          "byte_read": 15912490,
+          "byte_reinserted": 2677266,
+          "hit": 7956245,
+          "inserted": 2677435,
+          "layer": 0,
+          "miss_ratio": 0.2517881862158726,
+          "reinserted": 68,
+          "req": 10633680
+        }
+      ],
+      "miss_ratio": 0.2517881862158726,
+      "req": 10633680
+    }
+  ],
+  "trace": "mynahbird_request_collapsing_cache.1.oracleGeneral.sample10.zst"
+}

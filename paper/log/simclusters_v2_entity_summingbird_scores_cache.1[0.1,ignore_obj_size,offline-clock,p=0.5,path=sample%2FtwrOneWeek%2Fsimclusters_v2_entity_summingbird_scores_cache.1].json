@@ -1,0 +1,51 @@
+{
+  "dram_cache_size": 2087,
+  "flash_cache_size": 208713,
+  "results": [
+    {
+      "hit": 135890942,
+      "iteration": 0,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "offline-clock",
+          "byte_inserted": 2525004,
+          "byte_miss": 2525004,
+          "byte_read": 135890942,
+          "byte_reinserted": 3280828,
+          "hit": 135890942,
+          "inserted": 2525004,
+          "layer": 0,
+          "miss_ratio": 0.01824214675381408,
+          "reinserted": 3280828,
+          "req": 138415946
+        }
+      ],
+      "miss_ratio": 0.01824214675381408,
+      "req": 138415946
+    },
+    {
+      "hit": 135944807,
+      "iteration": 1,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "offline-clock",
+          "byte_inserted": 4996143,
+          "byte_miss": 4996143,
+          "byte_read": 271835749,
+          "byte_reinserted": 4031162,
+          "hit": 135944807,
+          "inserted": 2471139,
+          "layer": 0,
+          "miss_ratio": 0.01785299361390058,
+          "reinserted": 750334,
+          "req": 138415946
+        }
+      ],
+      "miss_ratio": 0.01785299361390058,
+      "req": 138415946
+    }
+  ],
+  "trace": "simclusters_v2_entity_summingbird_scores_cache.1.oracleGeneral.sample10.zst"
+}

@@ -1,0 +1,51 @@
+{
+  "dram_cache_size": 684,
+  "flash_cache_size": 68476,
+  "results": [
+    {
+      "hit": 242726971,
+      "iteration": 0,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "offline-clock",
+          "byte_inserted": 988292,
+          "byte_miss": 988292,
+          "byte_read": 242726971,
+          "byte_reinserted": 888326,
+          "hit": 242726971,
+          "inserted": 988292,
+          "layer": 0,
+          "miss_ratio": 0.0040551091787797144,
+          "reinserted": 888326,
+          "req": 243715263
+        }
+      ],
+      "miss_ratio": 0.0040551091787797144,
+      "req": 243715263
+    },
+    {
+      "hit": 242739081,
+      "iteration": 1,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "offline-clock",
+          "byte_inserted": 1964474,
+          "byte_miss": 1964474,
+          "byte_read": 485466052,
+          "byte_reinserted": 1396149,
+          "hit": 242739081,
+          "inserted": 976182,
+          "layer": 0,
+          "miss_ratio": 0.004005420046261143,
+          "reinserted": 507823,
+          "req": 243715263
+        }
+      ],
+      "miss_ratio": 0.004005420046261143,
+      "req": 243715263
+    }
+  ],
+  "trace": "blender_query_metadata_cache.0.oracleGeneral.sample10.zst"
+}

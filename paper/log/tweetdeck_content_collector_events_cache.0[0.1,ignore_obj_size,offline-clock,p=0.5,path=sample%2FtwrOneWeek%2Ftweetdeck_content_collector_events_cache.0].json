@@ -1,0 +1,51 @@
+{
+  "dram_cache_size": 12212,
+  "flash_cache_size": 1221223,
+  "results": [
+    {
+      "hit": 28112790,
+      "iteration": 0,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "offline-clock",
+          "byte_inserted": 12212478,
+          "byte_miss": 12212478,
+          "byte_read": 28112790,
+          "byte_reinserted": 10917074,
+          "hit": 28112790,
+          "inserted": 12212478,
+          "layer": 0,
+          "miss_ratio": 0.3028492705863728,
+          "reinserted": 10917074,
+          "req": 40325268
+        }
+      ],
+      "miss_ratio": 0.3028492705863728,
+      "req": 40325268
+    },
+    {
+      "hit": 28112791,
+      "iteration": 1,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "offline-clock",
+          "byte_inserted": 24424955,
+          "byte_miss": 24424955,
+          "byte_read": 56225581,
+          "byte_reinserted": 11247781,
+          "hit": 28112791,
+          "inserted": 12212477,
+          "layer": 0,
+          "miss_ratio": 0.3028492457880255,
+          "reinserted": 330707,
+          "req": 40325268
+        }
+      ],
+      "miss_ratio": 0.3028492457880255,
+      "req": 40325268
+    }
+  ],
+  "trace": "tweetdeck_content_collector_events_cache.0.oracleGeneral.sample10.zst"
+}
