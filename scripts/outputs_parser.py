@@ -2,8 +2,8 @@ import json
 import os
 from pathlib import Path
 from typing import Any, List, cast
+from numpy import nan
 
-from numpy import nan, trace
 import pandas as pd
 from common import extract_desc
 
@@ -18,8 +18,10 @@ def ProcessResultJSON(result: dict, file, algorithm):
         "Reinserted": metrics.get("reinserted", 0),
         "Miss Ratio": metrics.get("miss_ratio", 0),
         "Hit": metrics.get("hit", 0),
-        "Request": metrics.get("req", 0),
-        "P": float(cast(str, desc_map.get("p", nan))),
+        "Request": int(cast(str, metrics.get("req", 0))),
+        "P": float(cast(str, desc_map.get("p", "0.5"))),
+        "Precision": float(cast(str, desc_map.get("precision", 0))),
+        "Threshold": float(cast(str, desc_map.get("threshold", 0))),
         "Trace": os.path.basename(prefix),
         "Trace Path": desc_map.get("path", "").replace("%2F", "/"),
         "Cache Size": float(cast(str, desc[0])),
@@ -37,5 +39,6 @@ def GetResult(paths: List[str], plot_name: str, index=0):
         j = json.load(f)
         f.close()
         r = ProcessResultJSON(j["results"][index], file, plot_name)
+        r["Real Cache Size"] = j["flash_cache_size"]
         tmp.append(r)
     return pd.DataFrame(tmp)

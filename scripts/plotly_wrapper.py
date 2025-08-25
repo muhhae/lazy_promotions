@@ -1,6 +1,7 @@
 from typing import List
 
 import pandas as pd
+import numpy as np
 import plotly.express as px
 import plotly.graph_objs as go
 from plotly.io import templates
@@ -59,14 +60,60 @@ def Scatter(df: pd.DataFrame, include_zero: bool = False, **kwargs) -> go.Figure
 
 
 def Box(df: pd.DataFrame, x: str, y: str, **kwargs) -> go.Figure:
-    fig = px.box(df, x=x, y=y, **kwargs)
+    fig = px.box(
+        df,
+        x=x,
+        y=y,
+        points="outliers",
+        **kwargs,
+    )
+    fig.update_traces(marker_opacity=0)
     fig.update_layout(
         font=dict(size=24),
         height=800,
-        width=800,
+        width=1000,
         showlegend=False,
     )
     fig.update_yaxes(showgrid=True, nticks=20)
+    return fig
+
+
+def Box_2(
+    df: pd.DataFrame,
+    x_col: str,
+    y_col: str,
+    category_col: str,
+    lower_fence: float = 0.1,
+    upper_fence: float = 0.9,
+    **kwargs,
+) -> go.Figure:
+    df.sort_values(by=x_col)
+    stats = (
+        df.groupby([x_col, category_col])[y_col]
+        .quantile(np.array([lower_fence, 0.25, 0.50, 0.75, upper_fence]))
+        .unstack()
+    )
+
+    stats.columns = ["l_fence", "q1", "median", "q3", "u_fence"]
+    stats = stats.reset_index()
+    fig = go.Figure()
+    for category in df[category_col].unique():
+        category_stats = stats[stats[category_col] == category]
+        fig.add_trace(
+            go.Box(
+                name=category,
+                x=category_stats[x_col],
+                q1=category_stats["q1"],
+                median=category_stats["median"],
+                q3=category_stats["q3"],
+                lowerfence=category_stats["l_fence"],
+                upperfence=category_stats["u_fence"],
+                boxpoints=False,
+                boxmean="sd",
+                **kwargs,
+            ),
+        )
+    fig.update_layout(boxmode="group")
     return fig
 
 

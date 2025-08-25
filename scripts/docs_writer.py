@@ -1,6 +1,8 @@
 import os
 from _plotly_utils.utils import base64
 import markdown as MD
+from matplotlib.axes import Axes
+import seaborn as sns
 
 from plotly.graph_objs import Figure, Treemap
 
