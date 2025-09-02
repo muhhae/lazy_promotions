@@ -1,0 +1,29 @@
+{
+  "dram_cache_size": 480,
+  "flash_cache_size": 48007,
+  "results": [
+    {
+      "hit": 139756968,
+      "iteration": 0,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "t5auto",
+          "byte_inserted": 17379557,
+          "byte_miss": 17379557,
+          "byte_read": 139756968,
+          "byte_reinserted": 12181086,
+          "hit": 139756968,
+          "inserted": 17379557,
+          "layer": 0,
+          "miss_ratio": 0.11060163765235353,
+          "reinserted": 12181086,
+          "req": 157136525
+        }
+      ],
+      "miss_ratio": 0.11060163765235353,
+      "req": 157136525
+    }
+  ],
+  "trace": "meta_kvcache_traces_202210.sort.sample10.oracleGeneral.bin.zst"
+}
