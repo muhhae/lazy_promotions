@@ -1,0 +1,51 @@
+{
+  "dram_cache_size": 168,
+  "flash_cache_size": 16844,
+  "results": [
+    {
+      "hit": 9843500,
+      "iteration": 0,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "offline-clock",
+          "byte_inserted": 7993201,
+          "byte_miss": 7993201,
+          "byte_read": 9843500,
+          "byte_reinserted": 1017891,
+          "hit": 9843500,
+          "inserted": 7993201,
+          "layer": 0,
+          "miss_ratio": 0.44813225270749335,
+          "reinserted": 1017891,
+          "req": 17836701
+        }
+      ],
+      "miss_ratio": 0.44813225270749335,
+      "req": 17836701
+    },
+    {
+      "hit": 9865728,
+      "iteration": 1,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "offline-clock",
+          "byte_inserted": 15964174,
+          "byte_miss": 15964174,
+          "byte_read": 19709228,
+          "byte_reinserted": 1444686,
+          "hit": 9865728,
+          "inserted": 7970973,
+          "layer": 0,
+          "miss_ratio": 0.4468860581337323,
+          "reinserted": 426795,
+          "req": 17836701
+        }
+      ],
+      "miss_ratio": 0.4468860581337323,
+      "req": 17836701
+    }
+  ],
+  "trace": "fiu_homes-110108-112108.oracleGeneral.zst"
+}

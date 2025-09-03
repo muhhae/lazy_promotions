@@ -1,0 +1,51 @@
+{
+  "dram_cache_size": 88,
+  "flash_cache_size": 8813,
+  "results": [
+    {
+      "hit": 14843623,
+      "iteration": 0,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "offline-clock",
+          "byte_inserted": 2813609,
+          "byte_miss": 2813609,
+          "byte_read": 14843623,
+          "byte_reinserted": 970541,
+          "hit": 14843623,
+          "inserted": 2813609,
+          "layer": 0,
+          "miss_ratio": 0.15934598356073026,
+          "reinserted": 970541,
+          "req": 17657232
+        }
+      ],
+      "miss_ratio": 0.15934598356073026,
+      "req": 17657232
+    },
+    {
+      "hit": 14853516,
+      "iteration": 1,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "offline-clock",
+          "byte_inserted": 5617325,
+          "byte_miss": 5617325,
+          "byte_read": 29697139,
+          "byte_reinserted": 1055773,
+          "hit": 14853516,
+          "inserted": 2803716,
+          "layer": 0,
+          "miss_ratio": 0.15878570321780905,
+          "reinserted": 85232,
+          "req": 17657232
+        }
+      ],
+      "miss_ratio": 0.15878570321780905,
+      "req": 17657232
+    }
+  ],
+  "trace": "w40.oracleGeneral.bin.zst"
+}

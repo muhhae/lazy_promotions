@@ -1,0 +1,29 @@
+{
+  "dram_cache_size": 32,
+  "flash_cache_size": 3258,
+  "results": [
+    {
+      "hit": 6779763,
+      "iteration": 0,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "t4auto",
+          "byte_inserted": 2193438,
+          "byte_miss": 2193438,
+          "byte_read": 6779763,
+          "byte_reinserted": 396267,
+          "hit": 6779763,
+          "inserted": 2193438,
+          "layer": 0,
+          "miss_ratio": 0.2444432037129225,
+          "reinserted": 396267,
+          "req": 8973201
+        }
+      ],
+      "miss_ratio": 0.2444432037129225,
+      "req": 8973201
+    }
+  ],
+  "trace": "fiu_casa-110108-112108.oracleGeneral.zst"
+}
