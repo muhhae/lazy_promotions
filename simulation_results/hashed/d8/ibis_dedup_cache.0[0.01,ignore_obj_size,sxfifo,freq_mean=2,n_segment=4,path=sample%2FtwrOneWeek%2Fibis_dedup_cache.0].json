@@ -1,0 +1,29 @@
+{
+  "dram_cache_size": 13851,
+  "flash_cache_size": 1385122,
+  "results": [
+    {
+      "hit": 7781623,
+      "iteration": 0,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "sxfifo",
+          "byte_inserted": 139705096,
+          "byte_miss": 139705096,
+          "byte_read": 7781623,
+          "byte_reinserted": 1232630,
+          "hit": 7781623,
+          "inserted": 139705096,
+          "layer": 0,
+          "miss_ratio": 0.9472384832155633,
+          "reinserted": 1232630,
+          "req": 147486719
+        }
+      ],
+      "miss_ratio": 0.9472384832155633,
+      "req": 147486719
+    }
+  ],
+  "trace": "ibis_dedup_cache.0.oracleGeneral.sample10.zst"
+}
