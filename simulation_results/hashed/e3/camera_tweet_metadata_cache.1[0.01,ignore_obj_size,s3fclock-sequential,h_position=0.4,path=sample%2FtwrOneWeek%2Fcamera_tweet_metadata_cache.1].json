@@ -1,0 +1,29 @@
+{
+  "dram_cache_size": 5544,
+  "flash_cache_size": 554429,
+  "results": [
+    {
+      "hit": 62943915,
+      "iteration": 0,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "s3fclock-sequential",
+          "byte_inserted": 62906614,
+          "byte_miss": 62906614,
+          "byte_read": 62943915,
+          "byte_reinserted": 1075136,
+          "hit": 62943915,
+          "inserted": 62906614,
+          "layer": 0,
+          "miss_ratio": 0.49985180435753274,
+          "reinserted": 1075136,
+          "req": 125850529
+        }
+      ],
+      "miss_ratio": 0.49985180435753274,
+      "req": 125850529
+    }
+  ],
+  "trace": "camera_tweet_metadata_cache.1.oracleGeneral.sample10.zst"
+}
