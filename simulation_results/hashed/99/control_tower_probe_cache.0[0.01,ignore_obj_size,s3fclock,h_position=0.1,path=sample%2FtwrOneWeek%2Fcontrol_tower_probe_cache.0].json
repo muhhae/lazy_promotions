@@ -1,0 +1,29 @@
+{
+  "dram_cache_size": 2,
+  "flash_cache_size": 265,
+  "results": [
+    {
+      "hit": 38162386,
+      "iteration": 0,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "s3fclock",
+          "byte_inserted": 85286808,
+          "byte_miss": 85286808,
+          "byte_read": 38162386,
+          "byte_reinserted": 35666986,
+          "hit": 38162386,
+          "inserted": 85286808,
+          "layer": 0,
+          "miss_ratio": 0.6908656527964047,
+          "reinserted": 35666986,
+          "req": 123449194
+        }
+      ],
+      "miss_ratio": 0.6908656527964047,
+      "req": 123449194
+    }
+  ],
+  "trace": "control_tower_probe_cache.0.oracleGeneral.sample10.zst"
+}

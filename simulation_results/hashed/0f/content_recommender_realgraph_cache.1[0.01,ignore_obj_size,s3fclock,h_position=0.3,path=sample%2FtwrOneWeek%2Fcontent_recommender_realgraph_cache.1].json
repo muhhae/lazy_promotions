@@ -1,0 +1,29 @@
+{
+  "dram_cache_size": 24,
+  "flash_cache_size": 2455,
+  "results": [
+    {
+      "hit": 11089145,
+      "iteration": 0,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "s3fclock",
+          "byte_inserted": 11754952,
+          "byte_miss": 11754952,
+          "byte_read": 11089145,
+          "byte_reinserted": 5242450,
+          "hit": 11089145,
+          "inserted": 11754952,
+          "layer": 0,
+          "miss_ratio": 0.5145728456677452,
+          "reinserted": 5242450,
+          "req": 22844097
+        }
+      ],
+      "miss_ratio": 0.5145728456677452,
+      "req": 22844097
+    }
+  ],
+  "trace": "content_recommender_realgraph_cache.1.oracleGeneral.sample10.zst"
+}

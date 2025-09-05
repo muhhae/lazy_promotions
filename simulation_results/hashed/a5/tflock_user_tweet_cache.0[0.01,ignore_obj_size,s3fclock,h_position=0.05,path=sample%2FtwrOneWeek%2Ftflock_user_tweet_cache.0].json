@@ -1,0 +1,29 @@
+{
+  "dram_cache_size": 12,
+  "flash_cache_size": 1229,
+  "results": [
+    {
+      "hit": 18457769,
+      "iteration": 0,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "s3fclock",
+          "byte_inserted": 3326953,
+          "byte_miss": 3326953,
+          "byte_read": 18457769,
+          "byte_reinserted": 2578877,
+          "hit": 18457769,
+          "inserted": 3326953,
+          "layer": 0,
+          "miss_ratio": 0.15271955272139803,
+          "reinserted": 2578877,
+          "req": 21784722
+        }
+      ],
+      "miss_ratio": 0.15271955272139803,
+      "req": 21784722
+    }
+  ],
+  "trace": "tflock_user_tweet_cache.0.oracleGeneral.sample10.zst"
+}
