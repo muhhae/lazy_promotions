@@ -1,0 +1,29 @@
+{
+  "dram_cache_size": 175,
+  "flash_cache_size": 17535,
+  "results": [
+    {
+      "hit": 259963341,
+      "iteration": 0,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "s3fclock-sequential",
+          "byte_inserted": 51726736,
+          "byte_miss": 51726736,
+          "byte_read": 259963341,
+          "byte_reinserted": 22987663,
+          "hit": 259963341,
+          "inserted": 51726736,
+          "layer": 0,
+          "miss_ratio": 0.16595567140881418,
+          "reinserted": 22987663,
+          "req": 311690077
+        }
+      ],
+      "miss_ratio": 0.16595567140881418,
+      "req": 311690077
+    }
+  ],
+  "trace": "ibis_limiter_cache.1.oracleGeneral.sample10.zst"
+}

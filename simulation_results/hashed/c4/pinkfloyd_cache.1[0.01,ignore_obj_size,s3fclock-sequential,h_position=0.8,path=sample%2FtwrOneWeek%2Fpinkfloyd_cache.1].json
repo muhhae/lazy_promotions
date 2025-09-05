@@ -1,0 +1,29 @@
+{
+  "dram_cache_size": 2079,
+  "flash_cache_size": 207904,
+  "results": [
+    {
+      "hit": 512561162,
+      "iteration": 0,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "s3fclock-sequential",
+          "byte_inserted": 59595361,
+          "byte_miss": 59595361,
+          "byte_read": 512561162,
+          "byte_reinserted": 10095521,
+          "hit": 512561162,
+          "inserted": 59595361,
+          "layer": 0,
+          "miss_ratio": 0.10415919176718014,
+          "reinserted": 10095521,
+          "req": 572156523
+        }
+      ],
+      "miss_ratio": 0.10415919176718014,
+      "req": 572156523
+    }
+  ],
+  "trace": "pinkfloyd_cache.1.oracleGeneral.sample10.zst"
+}

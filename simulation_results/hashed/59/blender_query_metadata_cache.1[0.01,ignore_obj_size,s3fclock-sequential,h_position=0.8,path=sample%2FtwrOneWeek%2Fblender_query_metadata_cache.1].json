@@ -1,0 +1,29 @@
+{
+  "dram_cache_size": 71,
+  "flash_cache_size": 7128,
+  "results": [
+    {
+      "hit": 246365383,
+      "iteration": 0,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "s3fclock-sequential",
+          "byte_inserted": 10748871,
+          "byte_miss": 10748871,
+          "byte_read": 246365383,
+          "byte_reinserted": 5826626,
+          "hit": 246365383,
+          "inserted": 10748871,
+          "layer": 0,
+          "miss_ratio": 0.041805815246633515,
+          "reinserted": 5826626,
+          "req": 257114254
+        }
+      ],
+      "miss_ratio": 0.041805815246633515,
+      "req": 257114254
+    }
+  ],
+  "trace": "blender_query_metadata_cache.1.oracleGeneral.sample10.zst"
+}

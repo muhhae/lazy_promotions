@@ -1,0 +1,29 @@
+{
+  "dram_cache_size": 13629,
+  "flash_cache_size": 1362934,
+  "results": [
+    {
+      "hit": 605213584,
+      "iteration": 0,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "s3fclock",
+          "byte_inserted": 169254404,
+          "byte_miss": 169254404,
+          "byte_read": 605213584,
+          "byte_reinserted": 7969908,
+          "hit": 605213584,
+          "inserted": 169254404,
+          "layer": 0,
+          "miss_ratio": 0.2185428017975095,
+          "reinserted": 7969908,
+          "req": 774467988
+        }
+      ],
+      "miss_ratio": 0.2185428017975095,
+      "req": 774467988
+    }
+  ],
+  "trace": "taxi_v3_prod_cache.1.oracleGeneral.sample10.zst"
+}

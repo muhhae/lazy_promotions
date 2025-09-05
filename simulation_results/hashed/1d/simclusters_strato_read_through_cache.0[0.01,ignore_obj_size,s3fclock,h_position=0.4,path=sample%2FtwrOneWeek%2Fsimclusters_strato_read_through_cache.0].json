@@ -1,0 +1,29 @@
+{
+  "dram_cache_size": 129,
+  "flash_cache_size": 12925,
+  "results": [
+    {
+      "hit": 376594558,
+      "iteration": 0,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "s3fclock",
+          "byte_inserted": 13363669,
+          "byte_miss": 13363669,
+          "byte_read": 376594558,
+          "byte_reinserted": 8152104,
+          "hit": 376594558,
+          "inserted": 13363669,
+          "layer": 0,
+          "miss_ratio": 0.034269488562424955,
+          "reinserted": 8152104,
+          "req": 389958227
+        }
+      ],
+      "miss_ratio": 0.034269488562424955,
+      "req": 389958227
+    }
+  ],
+  "trace": "simclusters_strato_read_through_cache.0.oracleGeneral.sample10.zst"
+}

@@ -1,0 +1,29 @@
+{
+  "dram_cache_size": 9,
+  "flash_cache_size": 938,
+  "results": [
+    {
+      "hit": 1622337,
+      "iteration": 0,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "s3fclock-sequential",
+          "byte_inserted": 6103801,
+          "byte_miss": 6103801,
+          "byte_read": 1622337,
+          "byte_reinserted": 420961,
+          "hit": 1622337,
+          "inserted": 6103801,
+          "layer": 0,
+          "miss_ratio": 0.7900196708886121,
+          "reinserted": 420961,
+          "req": 7726138
+        }
+      ],
+      "miss_ratio": 0.7900196708886121,
+      "req": 7726138
+    }
+  ],
+  "trace": "fiu_webusers-030409-033109.oracleGeneral.zst"
+}
