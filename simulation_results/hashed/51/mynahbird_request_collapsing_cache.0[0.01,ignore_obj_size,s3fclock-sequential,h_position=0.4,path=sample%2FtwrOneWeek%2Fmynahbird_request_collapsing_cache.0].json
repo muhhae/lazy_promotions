@@ -1,0 +1,29 @@
+{
+  "dram_cache_size": 252,
+  "flash_cache_size": 25218,
+  "results": [
+    {
+      "hit": 7483885,
+      "iteration": 0,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "s3fclock-sequential",
+          "byte_inserted": 2522536,
+          "byte_miss": 2522536,
+          "byte_read": 7483885,
+          "byte_reinserted": 15316,
+          "hit": 7483885,
+          "inserted": 2522536,
+          "layer": 0,
+          "miss_ratio": 0.25209173189894774,
+          "reinserted": 15316,
+          "req": 10006421
+        }
+      ],
+      "miss_ratio": 0.25209173189894774,
+      "req": 10006421
+    }
+  ],
+  "trace": "mynahbird_request_collapsing_cache.0.oracleGeneral.sample10.zst"
+}

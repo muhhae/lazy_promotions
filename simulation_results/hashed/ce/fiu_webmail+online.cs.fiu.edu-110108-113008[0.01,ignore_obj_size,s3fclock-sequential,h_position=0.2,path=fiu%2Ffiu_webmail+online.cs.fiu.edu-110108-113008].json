@@ -1,0 +1,29 @@
+{
+  "dram_cache_size": 54,
+  "flash_cache_size": 5491,
+  "results": [
+    {
+      "hit": 4641523,
+      "iteration": 0,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "s3fclock-sequential",
+          "byte_inserted": 9652635,
+          "byte_miss": 9652635,
+          "byte_read": 4641523,
+          "byte_reinserted": 672481,
+          "hit": 4641523,
+          "inserted": 9652635,
+          "layer": 0,
+          "miss_ratio": 0.6752853158612071,
+          "reinserted": 672481,
+          "req": 14294158
+        }
+      ],
+      "miss_ratio": 0.6752853158612071,
+      "req": 14294158
+    }
+  ],
+  "trace": "fiu_webmail+online.cs.fiu.edu-110108-113008.oracleGeneral.zst"
+}
