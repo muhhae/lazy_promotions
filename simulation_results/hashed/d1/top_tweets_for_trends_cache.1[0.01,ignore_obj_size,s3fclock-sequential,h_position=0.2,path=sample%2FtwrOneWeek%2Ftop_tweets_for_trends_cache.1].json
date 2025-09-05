@@ -1,0 +1,29 @@
+{
+  "dram_cache_size": 98,
+  "flash_cache_size": 9889,
+  "results": [
+    {
+      "hit": 118132890,
+      "iteration": 0,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "s3fclock-sequential",
+          "byte_inserted": 2180067,
+          "byte_miss": 2180067,
+          "byte_read": 118132890,
+          "byte_reinserted": 1376166,
+          "hit": 118132890,
+          "inserted": 2180067,
+          "layer": 0,
+          "miss_ratio": 0.01811996857495568,
+          "reinserted": 1376166,
+          "req": 120312957
+        }
+      ],
+      "miss_ratio": 0.01811996857495568,
+      "req": 120312957
+    }
+  ],
+  "trace": "top_tweets_for_trends_cache.1.oracleGeneral.sample10.zst"
+}

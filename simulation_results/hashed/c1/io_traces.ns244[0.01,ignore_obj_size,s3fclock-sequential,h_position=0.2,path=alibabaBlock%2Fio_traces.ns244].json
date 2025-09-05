@@ -1,0 +1,29 @@
+{
+  "dram_cache_size": 64,
+  "flash_cache_size": 6468,
+  "results": [
+    {
+      "hit": 2805123,
+      "iteration": 0,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "s3fclock-sequential",
+          "byte_inserted": 1794877,
+          "byte_miss": 1794877,
+          "byte_read": 2805123,
+          "byte_reinserted": 43904,
+          "hit": 2805123,
+          "inserted": 1794877,
+          "layer": 0,
+          "miss_ratio": 0.390190652173913,
+          "reinserted": 43904,
+          "req": 4600000
+        }
+      ],
+      "miss_ratio": 0.390190652173913,
+      "req": 4600000
+    }
+  ],
+  "trace": "io_traces.ns244.oracleGeneral.zst"
+}
