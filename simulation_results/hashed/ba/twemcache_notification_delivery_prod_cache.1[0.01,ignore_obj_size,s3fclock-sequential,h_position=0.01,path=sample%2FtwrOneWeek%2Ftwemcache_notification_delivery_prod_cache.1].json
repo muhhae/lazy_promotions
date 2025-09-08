@@ -1,0 +1,29 @@
+{
+  "dram_cache_size": 7766,
+  "flash_cache_size": 776680,
+  "results": [
+    {
+      "hit": 827072,
+      "iteration": 0,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "s3fclock-sequential",
+          "byte_inserted": 78461322,
+          "byte_miss": 78461322,
+          "byte_read": 827072,
+          "byte_reinserted": 247302,
+          "hit": 827072,
+          "inserted": 78461322,
+          "layer": 0,
+          "miss_ratio": 0.9895688138165594,
+          "reinserted": 247302,
+          "req": 79288394
+        }
+      ],
+      "miss_ratio": 0.9895688138165594,
+      "req": 79288394
+    }
+  ],
+  "trace": "twemcache_notification_delivery_prod_cache.1.oracleGeneral.sample10.zst"
+}
