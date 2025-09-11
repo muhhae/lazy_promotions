@@ -12,16 +12,34 @@ def plt_box(
     df: pd.DataFrame,
     x,
     y,
+    x_label=None,
+    y_label=None,
     whis=[10, 90],
     fontsize=24,
+    legend_font_size=16,
     hue=None,
     dodge=True,
     title="",
     tick_step=None,
+    showmeans=True,
+    width=0.3,
+    gap=0.3,
+    x_size=None,
+    y_size=None,
     **kwargs,
 ) -> str:
-    tmp = df.sort_values(by=x)
-    plt.figure(figsize=(1.5 * len(df[x].unique()), 6))
+    tmp = df.sort_values(
+        by=x,
+        key=lambda col: col.map(
+            lambda x: (0, float(x))
+            if str(x).replace(".", "", 1).isdigit()
+            else (1, str(x))
+        ),
+    )
+    x_size = 2 * len(df[x].unique()) if x_size is None else x_size
+    y_size = 6 if y_size is None else y_size
+    plt.figure(figsize=(x_size, y_size))
+
     ax = sns.boxplot(
         data=tmp,
         x=x,
@@ -30,9 +48,9 @@ def plt_box(
         patch_artist=True,
         showfliers=False,
         whis=whis,
-        width=0.4,
-        # gap=0.3,
-        showmeans=True,
+        width=width,
+        gap=gap,
+        showmeans=showmeans,
         dodge=dodge,
         meanprops=dict(
             marker="o", markerfacecolor="white", markeredgecolor="black", markersize=8
@@ -56,9 +74,7 @@ def plt_box(
         ax.patches[-1].set_facecolor("lightgreen")
         ax.patches[-2].set_facecolor("lightgreen")
 
-    ax.yaxis.set_major_locator(ticker.MaxNLocator(nbins=10))
-    # if tmp[y].max() <= 1:
-    #     ax.yaxis.set_major_locator(ticker.MultipleLocator(0.1))
+    ax.yaxis.set_major_locator(ticker.MaxNLocator(nbins=5))
 
     if tick_step is not None:
         ymin, ymax = ax.get_ylim()
@@ -67,12 +83,20 @@ def plt_box(
         new_ticks = np.unique(np.concatenate([ticks_up, ticks_down]))
         ax.set_yticks(new_ticks)
 
+    plt.legend(fontsize=legend_font_size)
     plt.title(title, fontsize=fontsize)
     plt.grid(axis="y", linestyle="--", alpha=0.7)
     plt.grid(True, color="lightgray", linestyle="--", linewidth=1)
-    plt.xlabel(x, fontsize=fontsize)
-    plt.ylabel(y, fontsize=fontsize)
+
+    plt.xlabel(x, fontsize=fontsize) if x_label is None else plt.xlabel(
+        x_label, fontsize=fontsize
+    )
+    plt.ylabel(y, fontsize=fontsize) if y_label is None else plt.ylabel(
+        y_label, fontsize=fontsize
+    )
+
     plt.yticks(fontsize=fontsize)
+
     labels = [t.get_text() for t in ax.get_xticklabels()]
     if labels and max(len(lbl) for lbl in labels) > 8:
         plt.xticks(rotation=45, ha="right", fontsize=fontsize)
