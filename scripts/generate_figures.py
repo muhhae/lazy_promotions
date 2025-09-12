@@ -11,6 +11,7 @@ from typing import Final
 import numpy as np
 import seaborn as sns
 import age_parser as age
+import other_parser as other
 
 import pandas as pd
 from common import extract_desc, sort_key
@@ -221,14 +222,14 @@ def AdditionalProcessing(df: pd.DataFrame, compared_algo="FR"):
 
 
 def PaperMeasurement(df: pd.DataFrame):
-    fifo_miss = df.set_index(["Cache Size", "Trace Path"]).index.map(
+    fifo_miss_ratio = df.set_index(["Cache Size", "Trace Path"]).index.map(
         df.set_index("Algorithm")
         .loc["FIFO"]
         .set_index(["Cache Size", "Trace Path"])["Miss Ratio"]
     )
-    df["Relative Miss Ratio [FIFO]"] = df["Miss Ratio"] / fifo_miss
+    df["Relative Miss Ratio [FIFO]"] = df["Miss Ratio"] / fifo_miss_ratio
     df["Promotion Efficiency"] = (
-        (fifo_miss - df["Miss Ratio"]) / df["Reinserted"] * df["Request"]
+        (fifo_miss_ratio - df["Miss Ratio"]) * df["Request"] / df["Reinserted"]
     )
 
     lru_promos = df.set_index(["Cache Size", "Trace Path"]).index.map(
@@ -311,202 +312,6 @@ def ProcessData(df: pd.DataFrame):
     return df
 
 
-def ProcessCustomAlgo(df: pd.DataFrame, key):
-    df = df.query("Algorithm in @S3FClock")
-    grouped = df.groupby(["Cache Size", "Trace Path", "Algorithm"], group_keys=False)
-
-    def pick_with_larger_P(sub_df, col="Relative Miss Ratio [FR]", mode="min"):
-        sub_df = sub_df.dropna(subset=[col])
-        if sub_df.empty:
-            return None
-        if mode == "min":
-            target_val = sub_df[col].min()
-        elif mode == "max":
-            target_val = sub_df[col].max()
-        else:
-            raise ValueError("mode must be 'min' or 'max'")
-
-        candidates = sub_df[sub_df[col] == target_val]
-        chosen_P = candidates.loc[candidates["Hand Position"].idxmax(), key]
-        return chosen_P
-
-    lowest = grouped.apply(lambda g: pick_with_larger_P(g, mode="min"))
-    lowest = pd.Series(lowest, name="lowest miss ratio")
-    result = pd.concat(
-        [
-            lowest,
-        ],
-        axis=1,
-    ).reset_index()
-
-    return result
-
-
-def PrintParameterDistribution(df: pd.DataFrame, writer: DocsWriter):
-    writer.Write("# Parameter Distribution")
-    for key in [
-        "Hand Position",
-        "Relative Miss Ratio [FR]",
-        "Relative Promotion [FR]",
-    ]:
-        q = ProcessCustomAlgo(df, key)
-        q_melt = q.melt(
-            id_vars=["Cache Size", "Trace Path", "Algorithm"],
-            var_name="X",
-            value_name=key,
-        )
-        q_melt = q_melt.query(f"`{key}` == `{key}`")
-        q_melt[key] = q_melt[key].astype(float)
-        title = f"{key} Distribution"
-        fig = plt_box(
-            q_melt,
-            y=key,
-            x="X",
-            hue="Algorithm",
-            title=title,
-            dodge=True,
-            palette=PALETTE,
-            # tick_step=0.125 if key == "P" else None,
-        )
-        writer.Write(fig)
-
-
-def PrintS3FClock(df: pd.DataFrame, writer: DocsWriter):
-    writer.Write("# S3FClock")
-    data = df.query("`Algorithm` in @BASE_ALGO or `Algorithm` in @S3FClock")
-    for X in ["Hand Position"]:
-        data[X] = data[X].astype(str)
-        data.loc[data["Algorithm"].isin(BASE_ALGO), X] = data.loc[
-            data["Algorithm"].isin(BASE_ALGO), "Algorithm"
-        ]
-    data = data.reset_index()
-    for key in MEASUREMENTS:
-        title = f"{key}"
-        writer.Write(f"## {key}")
-        fig = plt_box(
-            data,
-            y=key,
-            x="Hand Position",
-            hue="Algorithm",
-            title=title,
-            dodge=True,
-            palette=PALETTE,
-            legend_font_size=18,
-            tick_step=0.01 if "Miss" in key else None,
-        )
-        writer.Write(fig)
-
-
-def PrintOverall(df: pd.DataFrame, writer: DocsWriter):
-    writer.Write("# OVERALL")
-    data = df.query(
-        "`Algorithm` in @BASE_ALGO or (`Algorithm` == 'AGE' and Scale == 0.5) or (`Algorithm` in @S3FClock and `Hand Position` <= 0.2 and `Hand Position` > 0)"
-    )
-    for X in ["Hand Position"]:
-        data[X] = data[X].astype(str)
-        data.loc[~data["Algorithm"].isin(S3FClock), X] = data.loc[
-            ~data["Algorithm"].isin(S3FClock), "Algorithm"
-        ]
-    data = data.reset_index()
-    for key in MEASUREMENTS:
-        title = f"{key}"
-        writer.Write(f"## {key}")
-        fig = plt_box(
-            data,
-            y=key,
-            x="Hand Position",
-            hue="Algorithm",
-            title=title,
-            dodge=True,
-            palette=PALETTE,
-            # order=["Gated Clock", "AGE", "QAND-Clock", "FR"],
-            # tick_step=0.005 if "Miss" in key else None,
-            legend_font_size=18,
-        )
-        writer.Write(fig)
-
-
-def PrintOverallAdaptive(df: pd.DataFrame, writer: DocsWriter):
-    writer.Write("# OVERALL AUTO")
-    ghost_algo = ["T3-AUTO", "T5-AUTO", "T6-AUTO", "T7-AUTO"]
-    parameter_auto = ["Q2-AUTO", "Q3-AUTO"]
-    parameterized = ["QAND-Clock", "QAND-Clock-v2"]
-    data = df.query(
-        "(`Algorithm` in @parameter_auto and `Precision` == 16) or `Algorithm` in @ghost_algo or `Algorithm` in @BASE_ALGO or (`Algorithm` in @parameterized and `P` == '0.375') or (`Algorithm` == 'AGE' and Scale == '0.5')"
-    )
-
-    data = data.reset_index()
-    data["Ghost Size"] = data["Ghost Size"].astype(str)
-    data.loc[~data["Algorithm"].isin(GHOST_ALGO + PARAMETER_AUTO), "Ghost Size"] = (
-        data.loc[~data["Algorithm"].isin(GHOST_ALGO + PARAMETER_AUTO), "Algorithm"]
-    )
-
-    for key in MEASUREMENTS:
-        title = f"{key}"
-        writer.Write(f"## {key}")
-        fig = plt_box(
-            data,
-            y=key,
-            x="Ghost Size",
-            hue="Algorithm",
-            title=title,
-            dodge=True,
-            palette=PALETTE,
-            tick_step=0.005 if "Miss" in key else None,
-            legend_font_size=18,
-        )
-        writer.Write(fig)
-
-
-def PrintAdaptive(df: pd.DataFrame, writer: DocsWriter):
-    writer.Write("# AUTO")
-    data = df.query("`Algorithm` in @GHOST_ALGO or `Algorithm` in @BASE_ALGO")
-
-    data = data.reset_index()
-    for a in GHOST_ALGO:
-        print(
-            f"{a}: ",
-            len(data.query("Algorithm == @a")["Trace Path"].unique()),
-        )
-
-    data["Ghost Size"] = data["Ghost Size"].astype(str)
-    data.loc[~data["Algorithm"].isin(GHOST_ALGO), "Ghost Size"] = data.loc[
-        ~data["Algorithm"].isin(GHOST_ALGO), "Algorithm"
-    ]
-
-    for key in MEASUREMENTS:
-        title = f"{key}"
-        writer.Write(f"## {key}")
-        fig = plt_box(
-            data,
-            y=key,
-            x="Ghost Size",
-            hue="Algorithm",
-            title=title,
-            dodge=True,
-            palette=PALETTE,
-            # tick_step=0.005 if "Miss" in key else None,
-        )
-        writer.Write(fig)
-    for a in GHOST_ALGO:
-        tmp = data.query("`Algorithm` == @a or `Algorithm` in @BASE_ALGO")
-        writer.Write(f"# {a}")
-        for key in MEASUREMENTS:
-            title = f"{key}"
-            writer.Write(f"## {key}")
-            fig = plt_box(
-                tmp,
-                y=key,
-                x="Ghost Size",
-                hue="Algorithm",
-                title=title,
-                dodge=False,
-                palette=PALETTE,
-                # tick_step=0.005 if "Miss" in key else None,
-            )
-            writer.Write(fig)
-
-
 def PrintAGE(df: pd.DataFrame, writer: DocsWriter):
     writer.Write("# AGE")
     data = df.query("`Algorithm` == 'AGE' or `Algorithm` in @BASE_ALGO")
@@ -534,51 +339,22 @@ def PrintAGE(df: pd.DataFrame, writer: DocsWriter):
         writer.Write(fig)
 
 
-def PrintQ(df: pd.DataFrame, writer: DocsWriter):
-    writer.Write("# Q-AUTO")
-    data = df.query("`Algorithm` in @PARAMETER_AUTO or `Algorithm` in @BASE_ALGO")
-    data = data.query("`Precision` < 32 or `Algorithm` in @BASE_ALGO")
-
-    data["Precision"] = data["Precision"].astype(str)
-    data["Ghost Size"] = data["Ghost Size"].astype(str)
-
-    data.loc[~data["Algorithm"].isin(PARAMETER_AUTO), "Precision"] = data.loc[
-        ~data["Algorithm"].isin(PARAMETER_AUTO), "Algorithm"
-    ]
-    data.loc[~data["Algorithm"].isin(PARAMETER_AUTO), "Ghost Size"] = data.loc[
-        ~data["Algorithm"].isin(PARAMETER_AUTO), "Algorithm"
-    ]
-
-    data = data.reset_index()
-    for a in PARAMETER_AUTO:
-        print(
-            f"{a}: ",
-            len(data.query("Algorithm == @a")["Trace Path"].unique()),
-        )
-    for a in PARAMETER_AUTO:
-        for key in MEASUREMENTS:
-            title = f"[{a}] {key}"
-            writer.Write(f"## {title}")
-            fig = plt_box(
-                data.query("`Algorithm` == @a or `Algorithm` in @BASE_ALGO"),
-                y=key,
-                x="Precision",
-                hue="Ghost Size",
-                title=title,
-                dodge=True,
-                palette=PALETTE,
-                # tick_step=0.005 if "Miss" in key else None,
-                showmeans=False,
-            )
-            writer.Write(fig)
-
-
 def PrintPaperFigures(df: pd.DataFrame, writer: DocsWriter):
+    palette = {
+        "Prob": "lightblue",
+        "Batch": "lightblue",
+        "Delay": "lightblue",
+        "FR": "lightblue",
+        "D-CLOCK": "lightgreen",
+        "AGE": "lightgreen",
+    }
+    __import__("pandasgui").show(df)
     writer.Write("# FOR PAPER")
+    df = df[np.isfinite(df["Promotion Efficiency"])]
+    print(df.groupby("Algorithm")["Promotion Efficiency"].agg(["mean", "median"]))
     age = df.query("`Algorithm` == 'AGE'")
     dclock = df.query("`Algorithm` == 'D-CLOCK'")
-    base = df.query("Algorithm in @BASE_ALGO")
-
+    base = df.query("Algorithm in @BASE_ALGO or Algorithm in ['Prob','Batch','Delay']")
     measurements = {
         "Relative Miss Ratio [LRU]": "Miss ratio relative to LRU",
         "Relative Promotion [LRU]": "Promotions relative to LRU",
@@ -586,10 +362,6 @@ def PrintPaperFigures(df: pd.DataFrame, writer: DocsWriter):
         "Relative Miss Ratio [FR]": "Miss ratio relative to FR",
         "Relative Promotion [FR]": "Promotions relative to FR",
     }.items()
-
-    print("FR: ", len(base["Trace Path"].unique()))
-    print("AGE: ", len(age["Trace Path"].unique()))
-    print("DCLOCk: ", len(dclock["Trace Path"].unique()))
 
     data = pd.concat(
         [age.query("Scale == 0.5"), dclock.query("`Hand Position` == 0.05"), base],
@@ -606,9 +378,9 @@ def PrintPaperFigures(df: pd.DataFrame, writer: DocsWriter):
             x_label="Technique",
             hue="Algorithm",
             dodge=False,
-            palette=PALETTE,
+            palette=palette,
             tick_step=0.2 if "Promotion" in key else 0.01 if "Miss" in key else None,
-            order=["D-CLOCK", "AGE", "FR"],
+            order=["Prob", "Batch", "Delay", "FR", "AGE", "D-CLOCK"],
             x_size=12,
         )
         writer.Write(fig)
@@ -622,7 +394,7 @@ def PrintPaperFigures(df: pd.DataFrame, writer: DocsWriter):
             x="Hand Position",
             x_label="Delay Ratio",
             hue="Algorithm",
-            palette=PALETTE,
+            palette=palette,
             tick_step=0.2 if "Promotion" in key else 0.01 if "Miss" in key else None,
             x_size=12,
         )
@@ -647,7 +419,7 @@ def PrintPaperFigures(df: pd.DataFrame, writer: DocsWriter):
             x="Hand Position",
             x_label="Delay Ratio",
             hue="Algorithm",
-            palette=["lightblue", "lightgreen"],
+            palette=palette,
             tick_step=0.2 if "Promotion" in key else 0.01 if "Miss" in key else None,
             x_size=12,
         )
@@ -666,32 +438,6 @@ def GenerateSite(
         f"{title}.html",
     )
     writer = DocsWriter(html_path=html_path, md_path=None)
-    writer.Write("# Overall P")
-    df = df.query(
-        "Algorithm in @S3FClock or Algorithm in @SFIFO or Algorithm == 'AGE' or P in @Ps or Algorithm in @BASE_ALGO or Algorithm in @PARAMETER_AUTO or Algorithm in @GHOST_ALGO"
-    )
-    # WriteAggregatePLT(writer, df.query("P in @Ps or Algorithm in @BASE_ALGO"))
-    # for Algo in PARAMETERIZED_ALGO:
-    #     writer.Write(f"# {Algo} compared to base_algo")
-    #     WriteAggregatePLT(
-    #         writer,
-    #         df.query("`Algorithm` == @Algo or `Algorithm` in @BASE_ALGO"),
-    #         f"# {Algo} compared to base_algo",
-    #     )
-    #     writer.Write(f"# {Algo} alone")
-    #     WriteAggregatePLT(
-    #         writer,
-    #         df.query("`Algorithm` == @Algo"),
-    #         f"# {Algo} alone",
-    #     )
-    # PrintSxFIFO(df, writer)
-    PrintS3FClock(df, writer)
-    # PrintAGE(df, writer)
-    # PrintQ(df, writer)
-    # PrintAdaptive(df, writer)
-    # PrintOverallAdaptive(df, writer)
-    # PrintOverall(df, writer)
-    # PrintParameterDistribution(df, writer)
     PrintPaperFigures(df, writer)
     writer.Flush()
     print("Finished generating " + title)
@@ -700,14 +446,18 @@ def GenerateSite(
 def main():
     age_results = age.ReadData()
     print(age_results)
+    other_results = other.ReadData()
+    print(other_results)
     traces = age_results["Trace Path"].unique()
+    print(len(traces))
+    traces = other_results["Trace Path"].unique()
     print(len(traces))
     df = ReadData()
     df = df.query("`Trace Path` in @traces")
     print(len(df["Trace Path"].unique()))
-    df = pd.concat([df, age_results], ignore_index=True)
+    df = pd.concat([df, age_results, other_results], ignore_index=True)
+    df = df.round(4)
     print(len(df["Trace Path"].unique()))
-    # exit(0)
     df = df.query("`Ignore Obj Size` == 1")
     df = ProcessData(df)
     print(df["Algorithm"].unique())
