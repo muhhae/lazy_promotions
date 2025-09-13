@@ -24,7 +24,7 @@ def ProcessResultJSON(result: dict, file, algorithm):
         "Cache Size": float(cast(str, desc[0])),
         "Ignore Obj Size": desc.count("ignore_obj_size"),
         "JSON File": os.path.basename(file),
-        "Delay Ratio": float(cast(str, desc_map.get("delay_ratio", None))),
+        "Delay Ratio": float(cast(str, desc_map.get("delay_ratio", 0))),
         "Bit": int(cast(str, desc_map.get("n_bit", 1))),
     }
 

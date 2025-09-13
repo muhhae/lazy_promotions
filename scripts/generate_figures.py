@@ -20,7 +20,7 @@ from outputs_parser import GetResult
 from plotly_wrapper import Box, Scatter, Box_2
 import matplotlib.pyplot as plt
 
-from matplotlib_wrapper import plt_box
+from matplotlib_wrapper import heat_map, plt_box
 
 OUTPUT_PATH: Final[str] = "../docs/"
 DATA_PATH: Final[str] = "../simulation_results/hashed/"
@@ -46,18 +46,57 @@ PALETTE = ["lightblue", "lightgreen", "lightpink", "purple", "gray"]
 PALETTE = "pastel"
 
 
+def WriteAggregatePLT(
+    writer: DocsWriter,
+    df: pd.DataFrame,
+    desc: str = "",
+):
+    df = df.reset_index()
+    for key in MEASUREMENTS:
+        title = f"{desc}"
+        writer.Write(f"### {key}")
+        fig = plt_box(
+            df,
+            y=key,
+            x="P",
+            hue="Algorithm",
+            title=title,
+            palette=PALETTE,
+            tick_step=0.01 if "Miss" in key else None,
+        )
+        writer.Write(fig)
+
+
+def WriteAggregate(
+    writer: DocsWriter,
+    df: pd.DataFrame,
+    desc: str = "",
+):
+    writer.Write(f"## Aggregate Results for {desc}")
+    for key in MEASUREMENTS:
+        title = f"{key} for {desc}"
+        writer.Write(f"### {key}")
+        fig = Box(
+            df,
+            y=key,
+            x="Algorithm",
+            title=title,
+        )
+        writer.WriteFig(fig)
+
+
 def AdditionalProcessing(df: pd.DataFrame, compared_algo="FR"):
     df["Trace Group"] = df["Trace Path"].apply(lambda x: Path(x).parts[0])
     df["Miss"] = df["Request"] - df["Hit"]
-    for key in ["Hit", "Miss Ratio", "Reinserted"]:
-        base = (
-            df.set_index("Algorithm")
-            .loc[compared_algo]
-            .set_index(["Cache Size", "Trace Path"])[key]
-        )
-        base_val = df.set_index(["Cache Size", "Trace Path"]).index.map(base)
-        df[f"Abs. D. {key}"] = df[key] - base_val
-        df[f"Rel. D. {key}"] = (df[key] - base_val) / base_val
+    # for key in ["Hit", "Miss Ratio", "Reinserted"]:
+    #     base = (
+    #         df.set_index("Algorithm")
+    #         .loc[compared_algo]
+    #         .set_index(["Cache Size", "Trace Path"])[key]
+    #     )
+    #     base_val = df.set_index(["Cache Size", "Trace Path"]).index.map(base)
+    #     df[f"Abs. D. {key}"] = df[key] - base_val
+    #     df[f"Rel. D. {key}"] = (df[key] - base_val) / base_val
 
 
 def PaperMeasurement(df: pd.DataFrame):
@@ -66,44 +105,54 @@ def PaperMeasurement(df: pd.DataFrame):
         .loc["FIFO"]
         .set_index(["Cache Size", "Trace Path"])["Miss Ratio"]
     )
-
     df["Relative Miss Ratio [FIFO]"] = df["Miss Ratio"] / fifo_miss_ratio
     df["Promotion Efficiency"] = (
         (fifo_miss_ratio - df["Miss Ratio"]) * df["Request"] / df["Reinserted"]
     )
 
-    df["Relative Promotion [LRU]"] = df["Promotion"] / (
-        df[df["Algorithm"].eq("LRU")]
-        .groupby(["Cache Size", "Trace Path"])["Promotion"]
-        .transform("first")
+    lru_promos = df.set_index(["Cache Size", "Trace Path"]).index.map(
+        df.set_index("Algorithm")
+        .loc["LRU"]
+        .set_index(["Cache Size", "Trace Path"])["Reinserted"]
     )
-    df["Relative Miss Ratio [LRU]"] = df["Miss Ratio"] / (
-        df[df["Algorithm"].eq("FR")]
-        .groupby(["Cache Size", "Trace Path"])["Miss Ratio"]
-        .transform("first")
-    )
+    df["Relative Promotion [LRU]"] = df["Reinserted"] / lru_promos
 
-    df["Relative Promotion [Base FR]"] = df["Miss Ratio"] / (
-        df[df["Algorithm"].eq("FR") & df["Bit"].eq(1)]
-        .groupby(["Cache Size", "Trace Path"])["Promotion"]
-        .transform("first")
+    lru_miss = df.set_index(["Cache Size", "Trace Path"]).index.map(
+        df.set_index("Algorithm")
+        .loc["LRU"]
+        .set_index(["Cache Size", "Trace Path"])["Miss Ratio"]
     )
-    df["Relative Miss Ratio [Base FR]"] = df["Miss Ratio"] / (
-        df[df["Algorithm"].eq("FR") & df["Bit"].eq(1)]
-        .groupby(["Cache Size", "Trace Path"])["Miss Ratio"]
-        .transform("first")
-    )
+    df["Relative Miss Ratio [LRU]"] = df["Miss Ratio"] / lru_miss
 
-    df["Relative Promotion [Bit FR]"] = df["Promotion"] / (
-        df[df["Algorithm"].eq("FR")]
-        .groupby(["Cache Size", "Trace Path", "Bit"])["Promotion"]
-        .transform("first")
+    base_clock_condition = (df["Algorithm"] == "FR") & (df["Bit"] == 1)
+
+    base_clock_promos = df.set_index(["Cache Size", "Trace Path"]).index.map(
+        df.loc[base_clock_condition].set_index(["Cache Size", "Trace Path"])[
+            "Reinserted"
+        ]
     )
-    df["Relative Miss Ratio [Bit FR]"] = df["Miss Ratio"] / (
-        df[df["Algorithm"].eq("FR")]
-        .groupby(["Cache Size", "Trace Path", "Bit"])["Miss Ratio"]
-        .transform("first")
+    df["Relative Promotion [Base FR]"] = df["Reinserted"] / base_clock_promos
+
+    base_clock_miss = df.set_index(["Cache Size", "Trace Path"]).index.map(
+        df.loc[base_clock_condition].set_index(["Cache Size", "Trace Path"])[
+            "Miss Ratio"
+        ]
     )
+    df["Relative Miss Ratio [Base FR]"] = df["Miss Ratio"] / base_clock_miss
+
+    bit_clock_promos = df.set_index(["Cache Size", "Trace Path", "Bit"]).index.map(
+        df.loc[df["Algorithm"] == "FR"].set_index(["Cache Size", "Trace Path", "Bit"])[
+            "Reinserted"
+        ]
+    )
+    df["Relative Promotion [Bit FR]"] = df["Reinserted"] / bit_clock_promos
+
+    bit_clock_miss = df.set_index(["Cache Size", "Trace Path", "Bit"]).index.map(
+        df.loc[df["Algorithm"] == "FR"].set_index(["Cache Size", "Trace Path", "Bit"])[
+            "Miss Ratio"
+        ]
+    )
+    df["Relative Miss Ratio [Bit FR]"] = df["Miss Ratio"] / bit_clock_miss
 
 
 def ReadData():
@@ -171,22 +220,23 @@ def PrintPaperFigures(df: pd.DataFrame, writer: DocsWriter):
 
     age = df.query("`Algorithm` == 'AGE'")
     dclock = df.query("`Algorithm` == 'D-FR'")
-    clock = df.query("Algorithm == 'Clock' and Bit == 1")
+    clock = df.query("Algorithm == 'FR'")
     other = df.query("Algorithm in ['Prob','Batch','Delay']")
 
     measurements = {
         "Relative Miss Ratio [LRU]": "Miss ratio relative to LRU",
         "Relative Promotion [LRU]": "Promotions relative to LRU",
-        "Relative Miss Ratio [FR]": "Miss ratio relative to FR",
-        "Relative Promotion [FR]": "Promotions relative to FR",
+        "Relative Miss Ratio [Base FR]": "Miss ratio relative to FR",
+        "Relative Promotion [Base FR]": "Promotions relative to FR",
+        "Relative Miss Ratio [Bit FR]": "Miss ratio relative to Bit FR",
+        "Relative Promotion [Bit FR]": "Promotions relative to Bit FR",
         "Promotion Efficiency": "Promotion efficiency",
     }.items()
-
     data = pd.concat(
         [
             age.query("Scale == 0.5"),
-            dclock.query("`Delay Ratio` == 0.05"),
-            clock,
+            dclock.query("`Delay Ratio` == 0.05 and Bit == 1"),
+            clock.query("Bit == 1"),
             other,
         ],
         ignore_index=True,
@@ -214,57 +264,47 @@ def PrintPaperFigures(df: pd.DataFrame, writer: DocsWriter):
             output_pdf=f"../docs/dclock_{key.replace(' ', '_').lower()}.pdf",
         )
         writer.Write(fig)
-
-    for key, val in measurements:
-        writer.Write(f"## {key}")
-        fig = plt_box(
-            dclock.query("`Delay Ratio` >= 0.01 and `Delay Ratio` <= 0.5"),
-            y=key,
-            y_label=val,
-            x="Delay Ratio",
-            x_label="Delay Ratio",
-            hue="Algorithm",
-            palette=palette,
-            tick_step=0.2
-            if "Relative Promotion" in key
-            else 0.015
-            if "Miss" in key
-            else None,
-            x_size=12,
-            width=0.7,
+    for aggfunc in ["mean", "median"]:
+        writer.Write(f"## dclock {aggfunc} heatmap")
+        for key, val in measurements:
+            writer.Write(f"### {key}")
+            fig = heat_map(
+                dclock,
+                x="Bit",
+                y="Delay Ratio",
+                title=key,
+                values=key,
+                aggfunc=aggfunc,
+            )
+            writer.Write(fig)
+    for dr in dclock["Delay Ratio"].unique():
+        print("dr: ", dr)
+        data = pd.concat(
+            [
+                dclock.query("`Delay Ratio` == @dr"),
+                clock,
+            ],
+            ignore_index=True,
         )
-        writer.Write(fig)
-
-    dclock_base = pd.concat(
-        [
-            dclock.query("`Delay Ratio` >= 0.01 and `Delay Ratio` <= 0.5"),
-            clock,
-            other,
-        ],
-        ignore_index=True,
-    )
-    dclock_base.loc[dclock_base["Algorithm"].isin(BASE_ALGO), "Delay Ratio"] = (
-        dclock_base.loc[dclock_base["Algorithm"].isin(BASE_ALGO), "Algorithm"]
-    )
-    for key, val in measurements:
-        writer.Write(f"## {key}")
-        fig = plt_box(
-            dclock_base,
-            y=key,
-            y_label=val,
-            x="Delay Ratio",
-            x_label="Delay Ratio",
-            hue="Algorithm",
-            palette=palette,
-            tick_step=0.2
-            if "Relative Promotion" in key
-            else 0.015
-            if "Miss" in key
-            else None,
-            x_size=12,
-            width=0.7,
-        )
-        writer.Write(fig)
+        print(data)
+        writer.Write(f"## Delay Ratio : {dr}")
+        for key, val in measurements:
+            writer.Write(f"### {key}")
+            fig = plt_box(
+                data,
+                y=key,
+                y_label=val,
+                x="Bit",
+                hue="Algorithm",
+                dodge=True,
+                palette=palette,
+                tick_step=0.015 if "Miss" in key else None,
+                x_size=12,
+                width=0.7,
+                show_legend=True,
+                # output_pdf=f"../docs/dclock_{key.replace(' ', '_').lower()}.pdf",
+            )
+            writer.Write(fig)
 
 
 def GenerateSite(

@@ -29,6 +29,73 @@ plt.rcParams.update(
 )
 
 
+def heat_map(
+    df,
+    x,
+    y,
+    values,
+    aggfunc,
+    x_label=None,
+    y_label=None,
+    output_pdf=None,
+    fontsize=32,
+    x_size=12,
+    y_size=7,
+    title="",
+):
+    plt.figure(figsize=(x_size, y_size))
+    data = df.pivot_table(
+        columns=x,
+        index=y,
+        values=values,
+        aggfunc=aggfunc,
+    )
+    data = data.sort_index(ascending=True)
+    ax = sns.heatmap(
+        data,
+        annot=True,
+        cmap="YlGnBu",
+    )
+
+    ax.invert_yaxis()
+    ax.set_yticklabels(ax.get_yticklabels(), rotation=0)  # 0° = horizontal
+    for _, patch in enumerate(ax.patches):
+        patch.set_linewidth(3)
+        patch.set_edgecolor("black")
+
+    for line in ax.lines:
+        if line.get_linestyle() == "-":
+            line.set_color("black")
+            line.set_linewidth(3)
+
+    plt.title(title, fontsize=fontsize)
+
+    plt.xlabel(x, fontsize=fontsize) if x_label is None else plt.xlabel(
+        x_label, fontsize=fontsize
+    )
+    plt.ylabel(y, fontsize=fontsize) if y_label is None else plt.ylabel(
+        y_label, fontsize=fontsize
+    )
+
+    plt.yticks(fontsize=fontsize)
+
+    labels = [t.get_text() for t in ax.get_xticklabels()]
+    if labels and max(len(lbl) for lbl in labels) > 8:
+        plt.xticks(rotation=-30, ha="center", fontsize=fontsize)
+    else:
+        plt.xticks(fontsize=fontsize)
+    buf = io.BytesIO()
+    plt.savefig(buf, format="svg", bbox_inches="tight")
+    plt.savefig(
+        output_pdf, format="pdf", bbox_inches="tight"
+    ) if output_pdf is not None else None
+    plt.close()
+    buf.seek(0)
+    svg_base64 = base64.b64encode(buf.read()).decode("utf-8")
+    md = f"![plot](data:image/svg+xml;base64,{svg_base64})"
+    return md
+
+
 def plt_box(
     df: pd.DataFrame,
     x,
@@ -37,7 +104,7 @@ def plt_box(
     y_label=None,
     whis=[10, 90],
     fontsize=32,
-    legend_font_size=16,
+    legend_font_size=32,
     show_legend=False,
     hue=None,
     dodge=True,
@@ -59,6 +126,7 @@ def plt_box(
             else (1, str(x))
         ),
     )
+
     x_size = 2 * len(df[x].unique()) if x_size is None else x_size
     y_size = 7 if y_size is None else y_size
     plt.figure(figsize=(x_size, y_size))
@@ -111,8 +179,8 @@ def plt_box(
         ax.set_yticks(new_ticks)
 
     plt.legend(fontsize=legend_font_size) if show_legend else None
-
     plt.title(title, fontsize=fontsize)
+
     plt.grid(axis="y", linestyle="--", alpha=0.7)
     plt.grid(True, color="lightgray", linestyle="--", linewidth=2)
 
