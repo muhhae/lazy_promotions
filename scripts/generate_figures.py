@@ -56,7 +56,7 @@ ALGO: dict[str, str | tuple[str, int]] = {
     # "QTime-Clock": "qtime-clock",
     "S3FClock": "s3fclock",
     "Gated Clock": "s3fclock-sequential",
-    "D-CLOCK": "cm-clock",
+    "D-FR": "cm-clock",
     # "QAND-Clock": "qand-clock",
     # "QAND-Clock-v2": "qand-clock-v2",
     # "QOR-Clock": "qor-clock",
@@ -109,7 +109,7 @@ SFIFO = [
 S3FClock = [
     # "S3FClock",
     "Gated Clock",
-    "D-CLOCK",
+    "D-FR",
 ]
 
 PALETTE = ["lightblue", "lightgreen", "lightpink", "purple", "gray"]
@@ -345,15 +345,13 @@ def PrintPaperFigures(df: pd.DataFrame, writer: DocsWriter):
         "Batch": "lightblue",
         "Delay": "lightblue",
         "FR": "lightblue",
-        "D-CLOCK": "lightgreen",
+        "D-FR": "lightgreen",
         "AGE": "lightgreen",
     }
-    __import__("pandasgui").show(df)
     writer.Write("# FOR PAPER")
-    df = df[np.isfinite(df["Promotion Efficiency"])]
     print(df.groupby("Algorithm")["Promotion Efficiency"].agg(["mean", "median"]))
     age = df.query("`Algorithm` == 'AGE'")
-    dclock = df.query("`Algorithm` == 'D-CLOCK'")
+    dclock = df.query("`Algorithm` == 'D-FR'")
     base = df.query("Algorithm in @BASE_ALGO or Algorithm in ['Prob','Batch','Delay']")
     measurements = {
         "Relative Miss Ratio [LRU]": "Miss ratio relative to LRU",
@@ -379,9 +377,15 @@ def PrintPaperFigures(df: pd.DataFrame, writer: DocsWriter):
             hue="Algorithm",
             dodge=False,
             palette=palette,
-            tick_step=0.2 if "Promotion" in key else 0.01 if "Miss" in key else None,
-            order=["Prob", "Batch", "Delay", "FR", "AGE", "D-CLOCK"],
+            tick_step=0.2
+            if "Relative Promotion" in key
+            else 0.015
+            if "Miss" in key
+            else None,
+            order=["Prob", "Batch", "Delay", "FR", "AGE", "D-FR"],
             x_size=12,
+            width=0.7,
+            output_pdf=f"../docs/dclock_{key.replace(' ', '_').lower()}.pdf",
         )
         writer.Write(fig)
 
@@ -395,8 +399,13 @@ def PrintPaperFigures(df: pd.DataFrame, writer: DocsWriter):
             x_label="Delay Ratio",
             hue="Algorithm",
             palette=palette,
-            tick_step=0.2 if "Promotion" in key else 0.01 if "Miss" in key else None,
+            tick_step=0.2
+            if "Relative Promotion" in key
+            else 0.015
+            if "Miss" in key
+            else None,
             x_size=12,
+            width=0.7,
         )
         writer.Write(fig)
 
@@ -420,8 +429,13 @@ def PrintPaperFigures(df: pd.DataFrame, writer: DocsWriter):
             x_label="Delay Ratio",
             hue="Algorithm",
             palette=palette,
-            tick_step=0.2 if "Promotion" in key else 0.01 if "Miss" in key else None,
+            tick_step=0.2
+            if "Relative Promotion" in key
+            else 0.015
+            if "Miss" in key
+            else None,
             x_size=12,
+            width=0.7,
         )
         writer.Write(fig)
 

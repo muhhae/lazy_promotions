@@ -7,6 +7,27 @@ import io
 import base64
 import matplotlib.ticker as ticker
 
+sns.set_theme(
+    style="whitegrid",
+    rc={
+        "lines.linewidth": 3,  # thicker lines everywhere
+        "patch.linewidth": 3,  # bar/box edges thicker
+        "axes.linewidth": 3,  # axis spines thicker
+    },
+)
+plt.rcParams.update(
+    {
+        "axes.edgecolor": "black",
+        "xtick.color": "black",
+        "ytick.color": "black",
+        "axes.labelcolor": "black",
+        "text.color": "black",
+        "xtick.labelsize": 12,
+        "ytick.labelsize": 12,
+        # "axes.labelweight": "bold",
+    }
+)
+
 
 def plt_box(
     df: pd.DataFrame,
@@ -15,8 +36,9 @@ def plt_box(
     x_label=None,
     y_label=None,
     whis=[10, 90],
-    fontsize=24,
+    fontsize=32,
     legend_font_size=16,
+    show_legend=False,
     hue=None,
     dodge=True,
     title="",
@@ -26,6 +48,7 @@ def plt_box(
     gap=0.3,
     x_size=None,
     y_size=None,
+    output_pdf=None,
     **kwargs,
 ) -> str:
     tmp = df.sort_values(
@@ -37,7 +60,7 @@ def plt_box(
         ),
     )
     x_size = 2 * len(df[x].unique()) if x_size is None else x_size
-    y_size = 6 if y_size is None else y_size
+    y_size = 7 if y_size is None else y_size
     plt.figure(figsize=(x_size, y_size))
 
     ax = sns.boxplot(
@@ -53,19 +76,23 @@ def plt_box(
         showmeans=showmeans,
         dodge=dodge,
         meanprops=dict(
-            marker="o", markerfacecolor="white", markeredgecolor="black", markersize=8
+            marker="o",
+            markerfacecolor="white",
+            markeredgewidth=2.5,
+            markeredgecolor="black",
+            markersize=14,
         ),
         medianprops=dict(linestyle="-", linewidth=1.25, color="black"),
         **kwargs,
     )
     for _, patch in enumerate(ax.patches):
-        patch.set_linewidth(1.25)
+        patch.set_linewidth(3)
         patch.set_edgecolor("black")
 
     for line in ax.lines:
         if line.get_linestyle() == "-":
             line.set_color("black")
-            line.set_linewidth(1.25)
+            line.set_linewidth(3)
 
     if hue is None:
         for _, patch in enumerate(ax.patches):
@@ -83,10 +110,11 @@ def plt_box(
         new_ticks = np.unique(np.concatenate([ticks_up, ticks_down]))
         ax.set_yticks(new_ticks)
 
-    plt.legend(fontsize=legend_font_size)
+    plt.legend(fontsize=legend_font_size) if show_legend else None
+
     plt.title(title, fontsize=fontsize)
     plt.grid(axis="y", linestyle="--", alpha=0.7)
-    plt.grid(True, color="lightgray", linestyle="--", linewidth=1)
+    plt.grid(True, color="lightgray", linestyle="--", linewidth=2)
 
     plt.xlabel(x, fontsize=fontsize) if x_label is None else plt.xlabel(
         x_label, fontsize=fontsize
@@ -99,12 +127,15 @@ def plt_box(
 
     labels = [t.get_text() for t in ax.get_xticklabels()]
     if labels and max(len(lbl) for lbl in labels) > 8:
-        plt.xticks(rotation=45, ha="right", fontsize=fontsize)
+        plt.xticks(rotation=-30, ha="center", fontsize=fontsize)
     else:
         plt.xticks(fontsize=fontsize)
 
     buf = io.BytesIO()
     plt.savefig(buf, format="svg", bbox_inches="tight")
+    plt.savefig(
+        output_pdf, format="pdf", bbox_inches="tight"
+    ) if output_pdf is not None else None
     plt.close()
     buf.seek(0)
     svg_base64 = base64.b64encode(buf.read()).decode("utf-8")
