@@ -19,18 +19,13 @@ def ProcessResultJSON(result: dict, file, algorithm):
         "Miss Ratio": metrics.get("miss_ratio", 0),
         "Hit": metrics.get("hit", 0),
         "Request": int(cast(str, metrics.get("req", 0))),
-        "P": float(cast(str, desc_map.get("p", "0.5"))),
-        "Precision": float(cast(str, desc_map.get("precision", 0))),
-        "N-Segment": float(cast(str, desc_map.get("n_segment", 0))),
-        "Freq Mean": float(cast(str, desc_map.get("freq_mean", 0))),
-        "Ghost Size": float(cast(str, desc_map.get("ghost_size", 0))),
-        "Threshold": float(cast(str, desc_map.get("threshold", 0))),
-        "Hand Position": float(cast(str, desc_map.get("h_position", 0))),
         "Trace": os.path.basename(prefix),
         "Trace Path": desc_map.get("path", "").replace("%2F", "/"),
         "Cache Size": float(cast(str, desc[0])),
         "Ignore Obj Size": desc.count("ignore_obj_size"),
         "JSON File": os.path.basename(file),
+        "Delay Ratio": float(cast(str, desc_map.get("delay_ratio", None))),
+        "Bit": int(cast(str, desc_map.get("n_bit", 1))),
     }
 
 

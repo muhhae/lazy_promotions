@@ -26,9 +26,6 @@ def parse_line(line: str, filename: str, cache_size: float):
             "Ignore Obj Size": 1,
             "Inserted": None,
             "Hit": None,
-            "P": None,
-            "Precision": None,
-            "Ghost Size": None,
             "Threshold": None,
             "JSON File": None,
         }
