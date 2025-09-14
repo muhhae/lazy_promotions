@@ -228,8 +228,8 @@ def PrintPaperFigures(df: pd.DataFrame, writer: DocsWriter):
         "Relative Promotion [LRU]": "Promotions relative to LRU",
         "Relative Miss Ratio [Base FR]": "Miss ratio relative to FR",
         "Relative Promotion [Base FR]": "Promotions relative to FR",
-        "Relative Miss Ratio [Bit FR]": "Miss ratio relative to Bit FR",
-        "Relative Promotion [Bit FR]": "Promotions relative to Bit FR",
+        "Relative Miss Ratio [Bit FR]": "Miss ratio relative to FR (same bit)",
+        "Relative Promotion [Bit FR]": "Promotions relative to FR (same bit)",
         "Promotion Efficiency": "Promotion efficiency",
     }.items()
     data = pd.concat(
@@ -272,7 +272,7 @@ def PrintPaperFigures(df: pd.DataFrame, writer: DocsWriter):
                 dclock,
                 x="Bit",
                 y="Delay Ratio",
-                title=key,
+                title=val,
                 values=key,
                 aggfunc=aggfunc,
             )
