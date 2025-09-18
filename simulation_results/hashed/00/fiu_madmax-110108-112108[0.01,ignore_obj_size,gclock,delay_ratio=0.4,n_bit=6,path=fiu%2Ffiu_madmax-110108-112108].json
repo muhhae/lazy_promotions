@@ -1,0 +1,29 @@
+{
+  "dram_cache_size": 6,
+  "flash_cache_size": 699,
+  "results": [
+    {
+      "hit": 131456,
+      "iteration": 0,
+      "metrics": [
+        {
+          "admission_treshold": 0,
+          "algorithm": "gclock",
+          "byte_inserted": 786554,
+          "byte_miss": 786554,
+          "byte_read": 131456,
+          "byte_reinserted": 37632,
+          "hit": 131456,
+          "inserted": 786554,
+          "layer": 0,
+          "miss_ratio": 0.8568033027962658,
+          "reinserted": 37632,
+          "req": 918010
+        }
+      ],
+      "miss_ratio": 0.8568033027962658,
+      "req": 918010
+    }
+  ],
+  "trace": "fiu_madmax-110108-112108.oracleGeneral.zst"
+}
